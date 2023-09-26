@@ -1,0 +1,3 @@
+import Shortcuts
+#Color: Blue, #Icon: Shortcuts
+call(contact: "Marcell")
