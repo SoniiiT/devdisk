@@ -136,6 +136,8 @@ function Get-UserInput {
 }
 
 Get-UserInput
+
+# Endmeldung
 Write-Output "+---------------------------------------------------------------------------------------+"
 $sentences = @(
     "Fucking awesome! ~ Dellas",
