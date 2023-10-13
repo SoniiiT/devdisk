@@ -1,33 +1,68 @@
-# Rename the computer to "NewComputerName"
-Rename-Computer -NewName "ITC-NB-2008-04"
+# Set the AC power plan to turn off the display after 4 hours and put the computer to sleep after 4 hours
+Set-SleepConfiguration -ACStandbyTimeout 240 -ACMonitorTimeout 240
+# Set the battery power plan to turn off the display after 4 hours and put the computer to sleep after 4 hours
+Set-SleepConfiguration -DCStandbyTimeout 240 -DCMonitorTimeout 240
 
-# Join AD
-Add-Computer -DomainName "itcares.local"
+# Rename the computer to "NewComputerName"
+$PCName = "Test-PC"
+Rename-Computer -NewName $PCName
+Write-Host "Computername changed to $PCName"
+
+# Join Active Directory Domain
+$UIAUN = "administrator"# Read-Host "Enter your admin username"
+$UIAPS = "" # Read-Host "Enter your admin password"
+$adminUser = "soniiit\$UIAUN"
+$adminPassword = ConvertTo-SecureString $UIAPS -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential($adminUser, $adminPassword)
+Add-Computer -DomainName "soniiit.ad.local" -Credential $credential
+Write-Host "Computer joined to domain"
 
 # Install PSWindowsUpdate Module
+Install-PackageProvider -Name NuGet -Force
 Install-Module -Name PSWindowsUpdate -Force
 # Update Windows to newest version
-Install-WindowsUpdate -AcceptAll -NoRestart
+Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -ForceDownload -ForceInstall -IgnoreReboot
+Write-Host "Windows updated"
 
 # Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Write-Host "Chocolatey installed"
 
 # Install Chocolatey Packages
-choco install googlechrome -y
-choco install firefox -y
-choco install 7zip -y h
-choco install foxitreader -y
-choco install teamviewer9 -y
-choco install lanconfig -y
-choco install lanmonitor -y
-choco install microsoft-office-deployment -y
-choco install microsoft-teams -y
-choco install adobereader -y
-choco install paint.net -y
-choco install winscp -y
-choco install jabra-direct -y
-choco install vnc-viewer -y
-choco install winscp.install -y
+$packages = @(
+    "googlechrome",
+    "firefox",
+    "7zip",
+    "foxitreader",
+    "teamviewer",
+    "lanconfig",
+    "lanmonitor",
+    "microsoft-office-deployment",
+    "microsoft-teams",
+    "adobereader",
+    "paint.net",
+    "winscp",
+    "jabra-direct",
+    "vnc-viewer",
+    "winscp.install"
+)
+
+$success = @()
+$failure = @()
+
+foreach ($package in $packages) {
+    try {
+        choco install $package -y
+        $success += $package
+    } catch {
+        $failure += $package
+    }
+}
+
+Write-Host "Chocolatey installed the following packages successfully: $($success -join ', ')"
+if ($failure) {
+    Write-Host "Chocolatey failed to install the following packages: $($failure -join ', ')" -ForegroundColor Red
+}
 
 # Install Windows Executable Files
 #Install Lancom Advanced VPN Client
@@ -35,12 +70,14 @@ $LVPNDLURL = "https://www.lancom-systems.de/fileadmin/download/LC-VPN-Client-Adv
 $LVPNSETUP = "$env:USERPROFILE\Downloads\LVPNSetup.exe"
 Invoke-WebRequest -Uri $LVPNDLURL -OutFile $LVPNSETUP
 Start-Process -FilePath $LVPNSETUP -ArgumentList "/silent" -Wait
+Write-Host "Lancom Advanced VPN Client installed"
 
 #Install LastPass
 $LPURL = "https://download.cloud.lastpass.com/windows_installer/LastPassInstaller.exe"
 $LPSETUP = "$env:USERPROFILE\Downloads\LPSetup.exe"
 Invoke-WebRequest -Uri $LPURL -OutFile $LPSETUP
 Start-Process -FilePath $LPSETUP -ArgumentList "/silent" -Wait
+write-host "LastPass installed"
 
 # Install Windows MSI Files
 #Install Unify Office
@@ -48,3 +85,12 @@ $UOURL = "https://downloads.ringcentral.com/app/unify/UnifyOffice-x64.msi"
 $UOSETUP = "$env:USERPROFILE\Downloads\UOSetup.msi"
 Invoke-WebRequest -Uri $UOURL -OutFile $UOSETUP
 Start-Process -FilePath $UOSETUP -ArgumentList "/quiet" -Wait
+Write-Host "Unify Office installed"
+
+# Set the AC power plan to turn off the display after 10 minutes and put the computer to sleep after 10 minutes
+Set-SleepConfiguration -ACStandbyTimeout 10 -ACMonitorTimeout 10
+# Set the battery power plan to turn off the display after 10 minutes and put the computer to sleep after 10 minutes
+Set-SleepConfiguration -DCStandbyTimeout 10 -DCMonitorTimeout 10
+
+# Reboot Computer
+Restart-Computer -Force
