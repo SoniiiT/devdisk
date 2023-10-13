@@ -15,7 +15,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # Install Chocolatey Packages
 choco install googlechrome -y
 choco install firefox -y
-choco install 7zip -y
+choco install 7zip -y h
 choco install foxitreader -y
 choco install teamviewer9 -y
 choco install lanconfig -y
