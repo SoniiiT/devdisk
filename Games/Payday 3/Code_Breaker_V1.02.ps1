@@ -16,7 +16,7 @@ function Get-UserInput {
         "1" {
             Write-Output "Gebe die 3 Ziffern nacheineinander ein die angefordert werden"
             $zahl1 = Read-Host "Zahl 1"
-            $zahl2 = Read-Host "Zahl 2"
+            $zahl2 = Read-Host "Za<hl 2"
             $zahl3 = Read-Host "Zahl 3"
             Write-Output "+-------------------------------------+"
             Write-Output "Die eingegebenen Zahlen lauten: $zahl1 $zahl2 $zahl3"
