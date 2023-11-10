@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  teleport:
+    image: "public.ecr.aws/gravitational/teleport-distroless:14.1.1"
+    container_name: "teleport"
+    restart: always
+    command: >
+      --entrypoint=/usr/local/bin/teleport
+      public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml
+    #bash -c "--entrypoint=/usr/local/bin/teleport && public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml"
+    # command: "--entrypoint=/usr/local/bin/teleport && public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml"
+    ports:
+      - "3025:3025"
+      - "3080:3080"
+    volumes:
+      - "~/teleport/config:/etc/teleport"
+      - "~/teleport/data:/var/lib/teleport"
