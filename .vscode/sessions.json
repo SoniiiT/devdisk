@@ -8,109 +8,39 @@
     "default": [
       [
         {
-          "name": "docker:ros",
+          "name": "kubernetes:k8slb",
           "commands": [
-            ""
+            "ssh tony@30.30.30.110"
           ]
         },
         {
-          "name": "docker:k8s",
+          "name": "kubernetes:k8sm1",
           "commands": [
-            ""
+            "ssh tony@30.30.30.120"
           ]
         },
         {
-          "name": "docker:nats",
+          "name": "kubernetes:k8sm2",
           "commands": [
-            ""
+            "ssh tony@30.30.30.121"
           ]
         },
         {
-          "name": "docker:fleet",
+          "name": "kubernetes:k8sw1",
           "commands": [
-            ""
-          ]
-        }
-      ],
-      [
-        {
-          "name": "db:postgre",
-          "commands": [
-            ""
+            "ssh tony@30.30.30.130"
           ]
         },
         {
-          "name": "db:redis",
+          "name": "kubernetes:k8sw2",
           "commands": [
-            ""
+            "ssh tony@30.30.30.131"
           ]
         },
         {
-          "name": "db:hyper",
+          "name": "kubernetes:k8sstorage",
           "commands": [
-            ""
-          ]
-        },
-        {
-          "name": "db:mysql",
-          "commands": [
-            ""
-          ]
-        }
-      ],
-      [
-        {
-          "name": "api:delivery",
-          "commands": [
-            ""
-          ]
-        },
-        {
-          "name": "api:feedback",
-          "commands": [
-            ""
-          ]
-        },
-        {
-          "name": "api:service",
-          "commands": [
-            ""
-          ]
-        }
-      ],
-      {
-        "name": "test",
-        "commands": [
-          ""
-        ]
-      },
-      {
-        "name": "debug",
-        "commands": [
-          ""
-        ]
-      }
-    ],
-    "saved-session-1": [
-      {
-        "name": "connect",
-        "commands": [
-          ""
-        ]
-      }
-    ],
-    "saved-session-2": [
-      [
-        {
-          "name": "api",
-          "commands": [
-            ""
-          ]
-        },
-        {
-          "name": "log",
-          "commands": [
-            ""
+            "ssh tony@30.30.30.90"
           ]
         }
       ]
