@@ -3,44 +3,65 @@
   "theme": "tribe",
   "active": "default",
   "activateOnStartup": true,
-  "keepExistingTerminals": false,
+  "keepExistingTerminals": true,
   "sessions": {
     "default": [
+      {
+        "name": "type:name",
+        "autoExecuteCommands": true,
+        "commands": [
+          ""
+        ]
+      }
+    ],
+    "kubernetes Zuhause": [
       [
         {
           "name": "kubernetes:k8slb",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.110"
+            "ssh tony@30.30.30.110",
+            "clear"
           ]
         },
         {
           "name": "kubernetes:k8sm1",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.120"
+            "ssh tony@30.30.30.120",
+            "clear"
           ]
         },
         {
           "name": "kubernetes:k8sm2",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.121"
+            "ssh tony@30.30.30.121",
+            "clear"
           ]
         },
         {
           "name": "kubernetes:k8sw1",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.130"
+            "ssh tony@30.30.30.130",
+            "clear"
           ]
         },
         {
           "name": "kubernetes:k8sw2",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.131"
+            "ssh tony@30.30.30.131",
+            "clear"
           ]
         },
         {
           "name": "kubernetes:k8sstorage",
+          "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.90"
+            "ssh tony@30.30.30.90",
+            "clear"
           ]
         }
       ]
