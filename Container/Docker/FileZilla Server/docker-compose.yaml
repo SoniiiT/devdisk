@@ -10,6 +10,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - CUSTOM_USER=itcares
+      - PASSWORD=itcares
     volumes:
       - /docker/filezillaftp:/config
     ports:
