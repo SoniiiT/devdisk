@@ -1,14 +1,14 @@
 
-# Register the script to be executed from the context menu
-$regPath = "HKCU:\Software\Classes\Applications\powershell.exe\shell\Add Chocolatey Package\Command"
-New-Item -Path $regPath -Force | Out-Null
-Set-ItemProperty -Path $regPath -Name "(Default)" -Value "powershell.exe -ExecutionPolicy Bypass -File 'C:\path\to\your\script.ps1' `"%1`""
-Set-ItemProperty -Path $regPath -Name "Icon" -Value "powershell.exe"
-Set-ItemProperty -Path $regPath -Name "Position" -Value "Bottom"
-
 # Create a Folder to Store the Script
 $scriptFolderPath = "C:\Windows\Scripts"
 New-Item -ItemType Directory -Path $scriptFolderPath -Force | Out-Null
+
+# Register the script to be executed from the context menu
+$regPath = "HKCU:\Software\Classes\Applications\powershell.exe\shell\Add Chocolatey Package\Command"
+New-Item -Path $regPath -Force | Out-Null
+Set-ItemProperty -Path $regPath -Name "(Default)" -Value "powershell.exe -ExecutionPolicy Bypass -File 'C:\Windows\Scripts\CreateAChocolateyPackage.ps1' `"%1`""
+Set-ItemProperty -Path $regPath -Name "Icon" -Value "powershell.exe"
+Set-ItemProperty -Path $regPath -Name "Position" -Value "Bottom"
 
 # Define the path to the new script
 $scriptPath = Join-Path -Path $scriptFolderPath -ChildPath "CreateAChocolateyPackage.ps1"
