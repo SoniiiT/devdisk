@@ -3,64 +3,141 @@
   "theme": "tribe",
   "active": "default",
   "activateOnStartup": true,
-  "keepExistingTerminals": true,
+  "keepExistingTerminals": false,
   "sessions": {
     "default": [
+      [
+        {
+          "name": "docker:ros",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "docker:k8s",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "docker:nats",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "docker:fleet",
+          "commands": [
+            ""
+          ]
+        }
+      ],
+      [
+        {
+          "name": "db:postgre",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "db:redis",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "db:hyper",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "db:mysql",
+          "commands": [
+            ""
+          ]
+        }
+      ],
+      [
+        {
+          "name": "api:delivery",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "api:feedback",
+          "commands": [
+            ""
+          ]
+        },
+        {
+          "name": "api:service",
+          "commands": [
+            ""
+          ]
+        }
+      ],
       {
-        "name": "type:name",
-        "autoExecuteCommands": true,
+        "name": "test",
+        "commands": [
+          ""
+        ]
+      },
+      {
+        "name": "debug",
         "commands": [
           ""
         ]
       }
     ],
-    "kubernetes Zuhause": [
+    "Kubernetes Zuhause": [
+      {
+        "name": "connect",
+        "commands": [
+          ""
+        ]
+      }
+    ],
+    "Kubernetes RPI Arbeit": [
       [
         {
-          "name": "kubernetes:k8slb",
+          "name": "kubernetes:dev-rpi-k8sm1",
           "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.110",
+            "ssh devops@10.10.40.210",
             "clear"
           ]
         },
         {
-          "name": "kubernetes:k8sm1",
+          "name": "kubernetes:dev-rpi-k8sm2",
           "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.120",
+            "ssh devops@10.10.40.211",
             "clear"
           ]
         },
         {
-          "name": "kubernetes:k8sm2",
+          "name": "kubernetes:dev-rpi-k8sw1",
           "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.121",
+            "ssh devops@10.10.40.220",
             "clear"
           ]
         },
         {
-          "name": "kubernetes:k8sw1",
+          "name": "kubernetes:dev-rpi-k8sw2",
           "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.130",
+            "ssh devops@10.10.40.221",
             "clear"
           ]
         },
         {
-          "name": "kubernetes:k8sw2",
+          "name": "kubernetes:dev-rpi-k8slb",
           "autoExecuteCommands": true,
           "commands": [
-            "ssh tony@30.30.30.131",
-            "clear"
-          ]
-        },
-        {
-          "name": "kubernetes:k8sstorage",
-          "autoExecuteCommands": true,
-          "commands": [
-            "ssh tony@30.30.30.90",
+            "ssh devops@10.10.40.200",
             "clear"
           ]
         }
