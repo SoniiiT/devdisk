@@ -1,7 +1,7 @@
 {
   "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v9/terminal-keeper.json",
   "theme": "tribe",
-  "active": "default",
+  "active": "Kubernetes RPI Arbeit",
   "activateOnStartup": true,
   "keepExistingTerminals": false,
   "sessions": {
@@ -93,9 +93,46 @@
     ],
     "Kubernetes Zuhause": [
       {
-        "name": "connect",
+        "name": "kubernetes:k8sm1",
+        "autoExecuteCommands": true,
         "commands": [
-          ""
+          "ssh devops@10.10.40.210",
+          "clear"
+        ]
+      },
+      {
+        "name": "kubernetes:k8sm1",
+        "commands": [
+          "ssh tony@30.30.30.120",
+          "clear"
+        ]
+      },
+      {
+        "name": "kubernetes:k8sm2",
+        "commands": [
+          "ssh tony@30.30.30.121",
+          "clear"
+        ]
+      },
+      {
+        "name": "kubernetes:k8sw1",
+        "commands": [
+          "ssh tony@30.30.30.130",
+          "clear"
+        ]
+      },
+      {
+        "name": "kubernetes:k8sw2",
+        "commands": [
+          "ssh tony@30.30.30.131",
+          "clear"
+        ]
+      },
+      {
+        "name": "kubernetes:k8slb",
+        "commands": [
+          "ssh tony@30.30.30.110",
+          "clear"
         ]
       }
     ],
