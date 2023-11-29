@@ -24,5 +24,4 @@ nodes:
 - role: control-plane
 - role: control-plane
 - role: worker
-  # the two workers
 - role: worker
