@@ -12,19 +12,6 @@
             "name": "MySQL",
             "database": "mysql",
             "username": "root"
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "192.168.178.41",
-            "port": 3306,
-            "driver": "MariaDB",
-            "name": "InStock",
-            "database": "instock",
-            "username": "root"
         }
     ],
     "python.testing.unittestArgs": [
