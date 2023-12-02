@@ -3,7 +3,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "/docker/watchtower:/var/run/docker.sock"
     # environment:
     #   WATCHTOWER_MONITOR_ONLY: 'true'
     #   WATCHTOWER_NOTIFICATIONS: email

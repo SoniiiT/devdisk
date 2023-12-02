@@ -15,5 +15,5 @@ services:
       - "3025:3025"
       - "3080:3080"
     volumes:
-      - "~/teleport/config:/etc/teleport"
-      - "~/teleport/data:/var/lib/teleport"
+      - "/docker/teleport/config:/etc/teleport"
+      - "/docker/teleport/data:/var/lib/teleport"
