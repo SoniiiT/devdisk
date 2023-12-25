@@ -1,3 +1,10 @@
+# Install PSWindowsUpdate Module
+Install-PackageProvider -Name NuGet -Force
+Install-Module -Name PSWindowsUpdate -Force
+# Update Windows to newest version
+Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -ForceDownload -ForceInstall -IgnoreReboot
+Write-Host "Windows updated"
+
 # Install Chocolatey (if not already installed)
 if (!(Get-Command choco -ErrorAction SilentlyContinue)) {
     Set-ExecutionPolicy Bypass -Scope Process -Force

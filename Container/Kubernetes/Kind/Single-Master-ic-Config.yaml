@@ -36,5 +36,4 @@ nodes:
     hostPort: 443
     protocol: TCP
 - role: worker
-  # the two workers
 - role: worker
