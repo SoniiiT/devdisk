@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Ask for the number of LBs
-echo "How many LBs are there?"
-read num_lbs
+echo "How many Loadbalancers are there?"
+read num_lbs #FIXME: Muss schauen, das eine anfrage kommt. Sollte der Wert mehr als 1 sein, muss eine andere Konfig erstellt werden. Sollte der 1. Loadbalancer der 2. die Aufgabe übernehmen kann.
 
 # Loop over the number of LBs
 for ((i=1; i<=num_lbs; i++)); do
@@ -14,7 +14,7 @@ for ((i=1; i<=num_lbs; i++)); do
 done
 
 # Ask for the number of masters
-echo "How many masters are there?"
+echo "How many Masters are there?"
 read num_masters
 
 # Loop over the number of masters
@@ -25,7 +25,7 @@ for ((i=1; i<=num_masters; i++)); do
     # Store the IP in a variable with a dynamic name
     declare "IP_MASTER_$i=$ip_master"
     # Append a server line for the current Master to the server lines string
-    server_lines+="    server kmaster$i $ip_master:6443 check fall 3 rise 2\n"
+    server_lines+="    server kmaster$i $ip_master:6443 check fall 3 rise 2\n" #FIXME: \n funktioniert nicht. Wird hinter dem letzten server angehängt und schreibt keine neue Zeile
 done
 
 # Ask for the Virtual IP
@@ -34,14 +34,13 @@ read ip_virtual
 
 # Ask for the network interface
 echo "Enter the network interface Name (ip a s (ex.: eht1)):"
-read name_interface
+read name_interface #Question: Wie kann ich das Interface automatisch herausfinden?
 
 # Installation of Keepalived and HAProxy
 sudo apt-get update
 sudo apt-get install -y keepalived haproxy
 
 # Creating an check_apiserver script
-touch /etc/keepalived/check_apiserver.sh
 echo "#!/bin/sh
 
 errorExit() {
