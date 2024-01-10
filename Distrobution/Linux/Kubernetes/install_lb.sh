@@ -41,7 +41,8 @@ sudo apt-get update
 sudo apt-get install -y keepalived haproxy
 
 # Creating an check_apiserver script
-"#!/bin/sh
+touch /etc/keepalived/check_apiserver.sh
+echo "#!/bin/sh
 
 errorExit() {
   echo "*** $@" 1%3E&2
@@ -51,11 +52,11 @@ errorExit() {
 curl --silent --max-time 2 --insecure https://localhost:6443/ -o /dev/null || errorExit "Error GET https://localhost:6443/"
 if ip addr | grep -q $ip_virtual; then
   curl --silent --max-time 2 --insecure https://$ip_virtual:6443/ -o /dev/null || errorExit "Error GET https://$ip_virtual:6443/"
-fi" > /etc/keepalived/check_apiserver.sh
+fi" >> /etc/keepalived/check_apiserver.sh
 
 # Configuring Keepalived
 cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
-"vrrp_script check_apiserver {
+echo "vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
   timeout 10
@@ -80,14 +81,14 @@ vrrp_instance VI_1 {
     track_script {
         check_apiserver
     }
-}" > /etc/keepalived/keepalived.conf
+}" >> /etc/keepalived/keepalived.conf
 
 # Restarting and enabling Keepalived
 systemctl restart keepalived && systemctl enable keepalived
 
 # Configuring HAProxy
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
-"frontend kubernetes-frontend
+echo "frontend kubernetes-frontend
   bind *:6443
   mode tcp
   option tcplog
@@ -99,7 +100,7 @@ backend kubernetes-backend
   mode tcp
   option ssl-hello-chk
   balance roundrobin
-    $server_lines" > /etc/haproxy/haproxy.cfg
+    $server_lines" >> /etc/haproxy/haproxy.cfg
 
 # Restarting and enabling HAProxy
 systemctl restart haproxy && systemctl enable haproxy
