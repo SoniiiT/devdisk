@@ -19,13 +19,6 @@ for ((i=2; i<=num_lbs; i++)); do
   lb_list+=" $ip_lb$i"
 done
 
-# Remove the first IP from the list
-ip_lb_list="${ip_lb_list#* }"
-
-# Assign the IP variables to ip_lb1, ip_lb2, and so on
-ip_lb1=$IP_LB_1
-ip_lb2=$IP_LB_2
-
 # Ask for the number of masters
 echo "How many Masters are there?"
 read num_masters
