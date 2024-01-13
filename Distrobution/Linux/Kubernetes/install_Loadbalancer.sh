@@ -2,16 +2,20 @@
 
 # Ask for the number of LBs
 echo "How many Loadbalancers are there?"
-read num_lbs #FIXME: Sollte LB mehr als 1 sein, dann soll die Keepalived Config angepasst werden.
+read num_lbs
 
 # Loop over the number of LBs
 for ((i=1; i<=num_lbs; i++)); do
-    # Ask for the IP of the current LB
-    echo "Enter the IP of LB $m:"
-    read ip_lb
-    # Store the IP in a variable with a dynamic name
-    declare "IP_LB_$m=$ip_lb"
+  # Ask for the IP of the current LB
+  echo "Enter the IP of LB $i:"
+  read ip_lb
+  # Store the IP in a variable with a dynamic name
+  declare "IP_LB_$i=$ip_lb"
 done
+
+# Assign the IP variables to ip_lb1, ip_lb2, and so on
+ip_lb1=$IP_LB_1
+ip_lb2=$IP_LB_2
 
 # Ask for the number of masters
 echo "How many Masters are there?"
@@ -54,8 +58,9 @@ if ip addr | grep -q $ip_virtual; then
 fi" >> /etc/keepalived/check_apiserver.sh
 
 # Configuring Keepalived
-cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
-echo "vrrp_script check_apiserver {
+# Check if there is only one load balancer
+if [ -z "$ip_lb2" ]; then
+  echo "vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
   timeout 10
@@ -81,12 +86,38 @@ vrrp_instance VI_1 {
         check_apiserver
     }
 }" >> /etc/keepalived/keepalived.conf
+else
+  echo "vrrp_script check_apiserver {
+  script "/etc/keepalived/check_apiserver.sh"
+  interval 3
+  timeout 10
+  fall 5
+  rise 2
+  weight -2
+}
 
-# If LB is more than 1, it adds the other LBs to the config
-echo "    unicast_src_ip $ip_lb1
+vrrp_instance VI_1 {
+    state BACKUP
+    interface $name_interface
+    virtual_router_id 1
+    priority 100
+    advert_int 5
+    authentication {
+        auth_type PASS
+        auth_pass mysecret
+    }
+    virtual_ipaddress {
+        $ip_virtual
+    }
+    track_script {
+        check_apiserver
+    }
+    unicast_src_ip $ip_lb1
     unicast_peer {
         $ip_lb2
-    }" >> /etc/keepalived/keepalived.conf
+}" >> /etc/keepalived/keepalived.conf
+fi
+
 
 # Restarting and enabling Keepalived
 systemctl restart keepalived && systemctl enable keepalived
