@@ -13,21 +13,10 @@ for ((i=1; i<=num_lbs; i++)); do
   declare "IP_LB_$i=$ip_lb"
   # Initialize flag variable
   append_flag=0
+done
 
-  # Loop through all IPs
-  for ip_lb in $ip_list
-  do
-    # If current IP is ip_lb1, set flag to start appending next IPs
-    if [ "$ip_lb" == "ip_lb1" ]; then
-      append_flag=1
-      continue
-    fi
-
-    # If flag is set, append IP to the list
-    if [ $append_flag -eq 1 ]; then
-      ip_lb_list+=" $ip_lb"
-    fi
-  done
+for ((i=2; i<=num_lbs; i++)); do
+  lb_list+=" $ip_lb$i"
 done
 
 # Remove the first IP from the list
@@ -134,7 +123,7 @@ vrrp_instance VI_1 {
     }
     unicast_src_ip $ip_lb1
     unicast_peer {
-        "$ip_lb_list\n"
+        "$lb_list\n"
 }" >> /etc/keepalived/keepalived.conf
 fi
 
