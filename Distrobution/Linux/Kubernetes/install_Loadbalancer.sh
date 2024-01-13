@@ -18,7 +18,7 @@ done
 for ((i=2; i<=num_lbs; i++)); do
   lb_list+=" $ip_lb$i"
 done
-a
+
 # Ask for the number of masters
 echo "How many Masters are there?"
 read num_masters
