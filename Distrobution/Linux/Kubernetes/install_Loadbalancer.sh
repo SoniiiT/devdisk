@@ -29,7 +29,7 @@ for ((i=1; i<=num_masters; i++)); do
     # Store the IP in a variable with a dynamic name
     declare "IP_MASTER_$i=$ip_master"
     # Append a server line for the current Master to the server lines string
-    server_lines+="    server kmaster$i $ip_master:6443 check fall 3 rise 2\\n"
+    server_lines+="    server kmaster$i $ip_master:6443 check fall 3 rise 2\n"
 done
 
 # Ask for the Virtual IP
@@ -124,7 +124,7 @@ systemctl restart keepalived && systemctl enable keepalived
 
 # Configuring HAProxy
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
-echo "frontend kubernetes-frontend
+echo -e "frontend kubernetes-frontend
   bind *:6443
   mode tcp
   option tcplog
