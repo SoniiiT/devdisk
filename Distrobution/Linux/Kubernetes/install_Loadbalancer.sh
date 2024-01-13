@@ -10,13 +10,13 @@ for ((i=1; i<=num_lbs; i++)); do
   echo "Enter the IP of LB $i:"
   read ip_lb
   # Store the IP in a variable with a dynamic name
-  declare "IP_LB_$i=$ip_lb"
-  # Initialize flag variable
-  append_flag=0
+  declare  "ip_lb_$i"="$ip_lb"
 done
 
-for ((i=2; i<=num_lbs; i++)); do
-  lb_list+=" $ip_lb$i"
+# Loop over the number of additional LBs
+for ((m=2; m<=num_lbs; m++)); do
+  ip_lbs="ip_lb_$m"
+  lb_list+="${!ip_lbs}\n"
 done
 
 # Ask for the number of masters
@@ -29,7 +29,7 @@ for ((i=1; i<=num_masters; i++)); do
     echo "Enter the IP of master $i:"
     read ip_master
     # Store the IP in a variable with a dynamic name
-    declare "IP_MASTER_$i=$ip_master"
+    declare "ip_master_$i=$ip_master"
     # Append a server line for the current Master to the server lines string
     server_lines+="    server kmaster$i $ip_master:6443 check fall 3 rise 2\n"
 done
@@ -114,9 +114,9 @@ vrrp_instance VI_1 {
     track_script {
         check_apiserver
     }
-    unicast_src_ip $ip_lb1
+    unicast_src_ip $ip_lb_1
     unicast_peer {
-        "$lb_list\n"
+        "$lb_list"
 }" >> /etc/keepalived/keepalived.conf
 fi
 
