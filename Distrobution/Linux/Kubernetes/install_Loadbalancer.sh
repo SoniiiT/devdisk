@@ -7,7 +7,7 @@ read num_lbs
 # Loop over the number of LBs
 for ((i=1; i<=num_lbs; i++)); do
   # Ask for the IP of the current LB
-  echo "Enter the IP of LB $i:"
+  echo "Enter the IP of LB $i: (First IP is this Machine)"
   read ip_lb
   # Store the IP in a variable with a dynamic name
   declare  "ip_lb_$i"="$ip_lb"
