@@ -61,7 +61,7 @@ fi" >> /etc/keepalived/check_apiserver.sh
 
 # Configuring Keepalived
 # Check if there is only one load balancer
-if [ -z "$ip_lb2" ]; then
+if [ -z "$ip_lb_2" ]; then
   echo "vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
