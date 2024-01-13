@@ -2,15 +2,15 @@
 
 # Ask for the number of LBs
 echo "How many Loadbalancers are there?"
-read num_lbs #FIXME: Muss schauen, das eine anfrage kommt. Sollte der Wert mehr als 1 sein, muss eine andere Konfig erstellt werden. Sollte der 1. Loadbalancer der 2. die Aufgabe übernehmen kann.
+read num_lbs #FIXME: Sollte LB mehr als 1 sein, dann soll die Keepalived Config angepasst werden.
 
 # Loop over the number of LBs
 for ((i=1; i<=num_lbs; i++)); do
     # Ask for the IP of the current LB
-    echo "Enter the IP of LB $i:"
+    echo "Enter the IP of LB $m:"
     read ip_lb
     # Store the IP in a variable with a dynamic name
-    declare "IP_LB_$i=$ip_lb"
+    declare "IP_LB_$m=$ip_lb"
 done
 
 # Ask for the number of masters
@@ -34,7 +34,7 @@ read ip_virtual
 
 # Ask for the network interface
 echo "Enter the network interface Name (ip a s (ex.: eht1)):"
-read name_interface #Question: Wie kann ich das Interface automatisch herausfinden?
+read name_interface
 
 # Installation of Keepalived and HAProxy
 sudo apt-get update
@@ -81,6 +81,12 @@ vrrp_instance VI_1 {
         check_apiserver
     }
 }" >> /etc/keepalived/keepalived.conf
+
+# If LB is more than 1, it adds the other LBs to the config
+echo "    unicast_src_ip $ip_lb1
+    unicast_peer {
+        $ip_lb2
+    }" >> /etc/keepalived/keepalived.conf
 
 # Restarting and enabling Keepalived
 systemctl restart keepalived && systemctl enable keepalived
