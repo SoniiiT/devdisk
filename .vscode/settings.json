@@ -27,20 +27,6 @@
             "username": "root",
             "password": ""
         },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "itclocal db",
-            "database": "mysql",
-            "username": "root",
-            "password": "abcd12345"
-        }
     ],
     "python.testing.unittestArgs": [
         "-v",
