@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sudo ufw allow 6443/tcp
+sudo ufw allow 6443/udp
+sudo systemctl restart ufw
+
 # Deactivate swap
 swapoff -a; sed -i '/swap/d' /etc/fstab
 
