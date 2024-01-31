@@ -44,6 +44,9 @@ read name_interface
 
 # Installation of Keepalived and HAProxy
 sudo apt-get update
+sudo ufw allow 6443/tcp
+sudo ufw allow 6443/udp
+sudo systemctl restart ufw
 sudo apt-get install -y keepalived haproxy
 
 # Creating an check_apiserver script
