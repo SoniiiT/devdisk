@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt-get update && sudo apt-get upgrade -y
 sudo ufw allow 6443/tcp
 sudo ufw allow 6443/udp
 sudo systemctl restart ufw
