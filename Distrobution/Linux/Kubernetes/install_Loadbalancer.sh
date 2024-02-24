@@ -43,10 +43,7 @@ echo "Enter the network interface Name (ip a s (ex.: eht1)):"
 read name_interface
 
 # Installation of Keepalived and HAProxy
-sudo apt-get update && sudo apt-get upgrade -y
-sudo ufw allow 6443/tcp
-sudo ufw allow 6443/udp
-sudo systemctl restart ufw
+sudo apt-get update
 sudo apt-get install -y keepalived haproxy
 
 # Creating an check_apiserver script
@@ -65,7 +62,10 @@ fi" >> /etc/keepalived/check_apiserver.sh
 # Configuring Keepalived
 # Check if there is only one load balancer
 if [ -z "$ip_lb_2" ]; then
-  echo "vrrp_script check_apiserver {
+  echo "global_defs {
+  enable_script_security
+  }
+  vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
   timeout 10
@@ -92,7 +92,10 @@ vrrp_instance VI_1 {
     }
 }" >> /etc/keepalived/keepalived.conf
 else
-  echo -e "vrrp_script check_apiserver {
+  echo -e "global_defs {
+  enable_script_security
+  }
+  vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
   timeout 10
@@ -145,3 +148,39 @@ backend kubernetes-backend
 
 # Restarting and enabling HAProxy
 systemctl restart haproxy && systemctl enable haproxy
+
+# Add Firewall Rules
+sudo ufw allow 6443/tcp
+sudo ufw allow 6443/udp
+sudo systemctl restart ufw
+
+# Deactivate swap
+swapoff -a; sed -i '/swap/d' /etc/fstab
+
+# Install Kernel Modules
+echo "overlay
+br_netfilter" >> /etc/modules-load.d/containerd.conf
+
+modprobe overlay
+modprobe br_netfilter
+
+echo "net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1" >> /etc/sysctl.d/kubernetes.conf
+
+sysctl --system
+
+# Install Docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+chmod +x get-docker.sh
+sudo sh ./get-docker.sh
+
+# Install Kubernetes
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt update
+sudo apt install kubeadm kubelet kubectl kubernetes-cni -y
+
+# Fixing Kubernetes
+sudo rm /etc/containerd/config.toml
+sudo systemctl restart containerd
