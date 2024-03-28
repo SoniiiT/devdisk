@@ -12,8 +12,8 @@ services:
     networks:
       - traefik-nw
     labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.nginx-soniiit-net.rule=Host('soniiit.net')"
-       - "traefik.http.routers.traefik.entrypoints=websecure"
-       - "traefik.http.routers.traefik.tls=true"
-       - "traefik.http.routers.traefik.tls.certresolver=cloudflare"
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx-soniiit-net.rule=Host('soniiit.net')"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=cloudflare"
