@@ -26,11 +26,11 @@ entryPoints:
   web:
     address: :80
     # -- (Optional) Redirect all HTTP to HTTPS
-    #http:
-    #  redirections:
-    #    entryPoint:
-    #      to: websecure
-    #      scheme: https
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
   websecure:
     address: :443
   # -- (Optional) Add custom Entrypoint
@@ -53,7 +53,7 @@ certificatesResolvers:
 #         resolvers:
 #           - "1.1.1.1:53"
 #           - "8.8.8.8:53"
-  production:
+  cloudflare:
     acme:
       email: your-email@example.com
       storage: /etc/traefik/certs/acme.json
@@ -89,5 +89,5 @@ providers:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
   file:
-    directory: /etc/traefik/conf/
+    directory: /etc/traefik/rules/
     watch: true

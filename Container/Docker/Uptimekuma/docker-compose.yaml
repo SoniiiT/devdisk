@@ -3,16 +3,18 @@
 
 version: '3.3'
 
+networks:
+  traefik-nw:
+    external: true
+
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     volumes:
       - ./uptime-kuma-data:/app/data
+    networks:
+      - traefik-nw
+    ports:
+      - 3001:3001
     restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nginx-soniiit-net.rule=Host('uptime.soniiit.net')"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.tls.certresolver=production"
