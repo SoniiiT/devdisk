@@ -1,11 +1,19 @@
-services:
+version: "3"
 
+networks:
+  traefik-nw:
+    external: true
+
+services:
   web:
     image: nginx:latest
-    volumes:
-    - "/docker/nginx-w:/etc/nginx/templates"
-    ports:
-    - "9090:80"
-    environment:
-    - "NGINX_HOST=foobar.com"
-    - "NGINX_PORT=80"
+    container_name: nginx-soniiit-net
+    restart: unless-stopped
+    networks:
+      - traefik-nw
+    labels:
+       - "traefik.enable=true"
+       - "traefik.http.routers.nginx-soniiit-net.rule=Host('soniiit.net')"
+       - "traefik.http.routers.traefik.entrypoints=websecure"
+       - "traefik.http.routers.traefik.tls=true"
+       - "traefik.http.routers.traefik.tls.certresolver=cloudflare"

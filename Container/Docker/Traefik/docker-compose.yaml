@@ -1,27 +1,26 @@
-version: "3.3"
-
+---
+# -- (Optional) When using a custom network
+networks:
+  traefik-nw:
+    external: true
 services:
-
   traefik:
-    image: "traefik:latest"
-    container_name: "traefik"
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+    image: traefik:v2.11.0
+    container_name: traefik
     ports:
-      - "80:80"
-      - "8080:8080"
-      - "443:443"
+      - 80:80
+      - 443:443
+      # -- (Optional) Enable Dashboard, don't do in production
+      - 9090:8080
     volumes:
-      - "/docker/traefik:/var/run/docker.sock:ro"
-
-  whoami:
-    image: "traefik/whoami"
-    container_name: "simple-service"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./config/conf/:/etc/traefik/conf/
+      - ./config/certs/:/etc/traefik/certs/
+    # -- (Optional) When using Cloudflare as Cert Resolver
+    environment:
+      - CF_DNS_API_TOKEN=your-cloudflare-api-token
+    # -- (Optional) When using a custom network
+    networks:
+      - traefik-nw
+    restart: unless-stopped
