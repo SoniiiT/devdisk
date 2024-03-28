@@ -1,19 +1,28 @@
-version: "3"
-
+---
+# -- (Optional) When using Traefik, use this section
+networks:
+  traefik-nw:
+    external: true
 services:
-
   teleport:
-    image: "public.ecr.aws/gravitational/teleport-distroless:14.1.1"
-    container_name: "teleport"
-    restart: always
-    command: >
-      --entrypoint=/usr/local/bin/teleport
-      public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml
-    #bash -c "--entrypoint=/usr/local/bin/teleport && public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml"
-    # command: "--entrypoint=/usr/local/bin/teleport && public.ecr.aws/gravitational/teleport-distroless:14.1.1 configure --roles=proxy,auth > ~/teleport/config/teleport.yaml"
-    ports:
-      - "3025:3025"
-      - "3080:3080"
+    image: public.ecr.aws/gravitational/teleport-distroless:13
+    container_name: teleport
     volumes:
-      - "/docker/teleport/config:/etc/teleport"
-      - "/docker/teleport/data:/var/lib/teleport"
+      - ./config:/etc/teleport
+      - ./data:/var/lib/teleport
+    # -- (Optional) Traefik example configuration
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.teleport.loadbalancer.server.port=3080"
+      - "traefik.http.services.teleport.loadbalancer.server.scheme=https"
+      - "traefik.http.routers.teleport-http.entrypoints=web"
+      - "traefik.http.routers.teleport-http.rule=HostRegexp(`teleport.docker.home.soniiit.net`, `{subhost:[a-z]+}.home.soniiit.net`)"
+      - "traefik.http.routers.teleport-https.entrypoints=websecure"
+      - "traefik.http.routers.teleport-https.rule=HostRegexp(`teleport.docker.home.soniiit.net`, `{subhost:[a-z]+}.home.soniiit.net`)"
+      - "traefik.http.routers.teleport-https.tls=true"
+      - "traefik.http.routers.teleport-https.tls.certresolver=production"
+      - "traefik.http.routers.teleport-https.tls.domains[0].main=teleport.docker.home.soniiit.net"
+      - "traefik.http.routers.teleport-https.tls.domains[0].sans=*.teleport.docker.home.soniiit.net"
+    networks:
+      - traefik-nw
+    restart: unless-stopped
