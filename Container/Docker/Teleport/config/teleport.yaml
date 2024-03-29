@@ -12,7 +12,7 @@ auth_service:
   enabled: "yes"
   listen_addr: 0.0.0.0:3025
   proxy_listener_mode: multiplex
-  cluster_name: teleport.docker.home.soniiit.net
+  cluster_name: teleport.home.soniiit.net
   # -- (Optional) Passwordless Authentication
   # authentication:
   #   type: local
@@ -32,7 +32,7 @@ proxy_service:
   enabled: "yes"
   web_listen_addr: 0.0.0.0:3080
   # -- (Optional) when using reverse proxy
-  public_addr: ['teleport.docker.home.soniiit.net:443']
+  public_addr: ['teleport.home.soniiit.net:443']
   https_keypairs: []
   acme: {}
   # --(Optional) ACME
@@ -44,11 +44,11 @@ proxy_service:
   #  openai:
   #    api_token_path: /etc/teleport/openai_key
 
-app_service:
-  #enabled: no
-  # -- (Optional) App Service
-  enabled: yes
-  apps:
-    - name: "proxmox-srv-1"
-      uri: "http://proxmox.home.soniiit.net:8006/"
-      insecure_skip_verify: true
+# app_service:
+#   enabled: no
+#   # -- (Optional) App Service
+#   enabled: yes
+#   apps:
+#     - name: "proxmox-srv-1"
+#       uri: "http://proxmox.home.soniiit.net:8006/"
+#       insecure_skip_verify: true
