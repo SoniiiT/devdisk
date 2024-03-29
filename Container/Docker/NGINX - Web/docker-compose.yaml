@@ -13,7 +13,8 @@ services:
       - traefik-nw
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx-soniiit-net.rule=Host('soniiit.net')"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.tls.certresolver=cloudflare"
+      - "traefik.http.services.nginx.loadbalancer.server.port=5001"
+      - "traefik.http.routers.nginx.rule=Host('dockage.soniiit.net')"
+      - "traefik.http.routers.nginx.entrypoints=websecure"
+      - "traefik.http.routers.nginx.tls=true"
+      - "traefik.http.routers.nginx.tls.certresolver=cloudflare"
