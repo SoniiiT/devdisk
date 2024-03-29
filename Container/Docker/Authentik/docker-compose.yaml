@@ -33,7 +33,7 @@ services:
     volumes:
       - redis:/data
   server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server:2024.2.2
+    image: ghcr.io/goauthentik/server:2024.2.2
     restart: unless-stopped
     container_name: authentik-server
     command: server
@@ -63,7 +63,7 @@ services:
     networks:
       - traefik-nw
   worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server:2024.2.2
+    image: ghcr.io/goauthentik/server:2024.2.2
     restart: unless-stopped
     container_name: authentik-worker
     command: worker
