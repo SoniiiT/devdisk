@@ -6,7 +6,7 @@ global:
 #     - loglevels [DEBUG, INFO, WARNING, ERROR, CRITICAL]
 #     - format [common, json, logfmt]
 log:
-  level: DEBUG
+  level: ERROR
   format: common
   filePath: /var/log/traefik/traefik.log
 
@@ -26,16 +26,16 @@ entryPoints:
   web:
     address: :80
     # -- (Optional) Redirect all HTTP to HTTPS
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
   websecure:
     address: :443
   # -- (Optional) Add custom Entrypoint
-  portainer:
-    address: :9443
+  # custom:
+  #   address: :8080
 
 # -- Configure your CertificateResolver here...
 certificatesResolvers:
@@ -58,19 +58,19 @@ certificatesResolvers:
       email: your-email@example.com
       storage: /etc/traefik/certs/acme.json
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
-#       -- (Optional) Remove this section, when using DNS Challenge
+#      -- (Optional) Remove this section, when using DNS Challenge
       httpChallenge:
         entryPoint: web
-#       -- (Optional) Configure DNS Challenge
+#      -- (Optional) Configure DNS Challenge
       dnsChallenge:
-        provider: cloudflare
+        provider: your-resolver (e.g. cloudflare)
         resolvers:
           - "1.1.1.1:53"
           - "8.8.8.8:53"
 
 # -- (Optional) Disable TLS Cert verification check
-serversTransport:
-  insecureSkipVerify: true
+# serversTransport:
+#   insecureSkipVerify: true
 
 # -- (Optional) Overwrite Default Certificates
 tls:
@@ -80,14 +80,14 @@ tls:
         certFile: /etc/traefik/certs/cert.pem
         keyFile: /etc/traefik/certs/cert-key.pem
 # -- (Optional) Disable TLS version 1.0 and 1.1
-  options:
-    default:
-      minVersion: VersionTLS12
+#   options:
+#     default:
+#       minVersion: VersionTLS12
 
 providers:
   docker:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
   file:
-    directory: /etc/traefik/rules/
+    directory: /etc/traefik/conf/
     watch: true
