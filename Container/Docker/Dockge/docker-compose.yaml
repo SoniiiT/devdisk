@@ -7,6 +7,7 @@ networks:
 services:
   dockge:
     image: louislam/dockge:1
+    container_name: dockge-01
     restart: unless-stopped
     ports:
       - 5001:5001
@@ -23,9 +24,9 @@ services:
       - DOCKGE_STACKS_DIR=/home/tony/docker-compose
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.entrypoints=websecure"
-      - "traefik.http.routers.nginx.rule=Host(`nginx.soniiit.net`)"
-      - "traefik.http.routers.nginx.tls=true"
-      - "traefik.http.routers.nginx.tls.certresolver=cloudflare"
+      - "traefik.http.routers.dockge.entrypoints=websecure"
+      - "traefik.http.routers.dockge.rule=Host(`dockge.home.soniiit.net`)"
+      - "traefik.http.routers.dockge.tls=true"
+      - "traefik.http.routers.dockge.tls.certresolver=cloudflare"
     networks:
       - traefik-nw
