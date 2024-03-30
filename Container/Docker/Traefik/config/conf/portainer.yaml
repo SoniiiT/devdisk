@@ -1,0 +1,22 @@
+# http:
+#   routers:
+#     portainer-router:
+#       rule: "Host(`portainer.home.soniiit.net`)"
+#       entryPoints: ["websecure"]
+#       tls:
+#         certResolver: cloudflare
+#       service: "portainer-service"
+#       middlewares:
+#         - portainer-middleware
+
+#   services:
+#     portainer-service:
+#       loadBalancer:
+#         servers:
+#           - url: "http://192.168.178.51:9443"
+
+#   middlewares:
+#     portainer-middleware:
+#       stripPrefix:
+#         prefixes:
+#           - "/portainer"
