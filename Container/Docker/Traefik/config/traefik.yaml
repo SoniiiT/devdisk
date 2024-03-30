@@ -63,7 +63,7 @@ certificatesResolvers:
         entryPoint: web
 #      -- (Optional) Configure DNS Challenge
       dnsChallenge:
-        provider: your-resolver (e.g. cloudflare)
+        provider: cloudflare
         resolvers:
           - "1.1.1.1:53"
           - "8.8.8.8:53"
