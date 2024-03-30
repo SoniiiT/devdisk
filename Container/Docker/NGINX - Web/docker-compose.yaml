@@ -13,7 +13,7 @@ services:
       - traefik-nw
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host('nginx.soniiit.net')"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.soniiit.net`)"
       - "traefik.http.routers.nginx.entrypoints=websecure"
       - "traefik.http.routers.nginx.tls=true"
       - "traefik.http.routers.nginx.tls.certresolver=cloudflare"
