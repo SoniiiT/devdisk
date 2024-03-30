@@ -1,0 +1,23 @@
+# http:
+#   routers:
+#     dashmachine-router:
+#       rule: "Host(`dashmachine.home.soniiit.net`)"
+#       entryPoints:
+#         - websecure
+#       tls:
+#         certResolver: cloudflare
+#       service: "dashmachine-service"
+#       middlewares:
+#         - dashmachine-middleware
+
+#   services:
+#     dashmachine-service:
+#       loadBalancer:
+#         servers:
+#           - url: "http://192.168.178.61:5000"
+
+#   middlewares:
+#     dashmachine-middleware:
+#       stripPrefix:
+#         prefixes:
+#           - "/dashmachine"
