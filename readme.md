@@ -1,1 +1,1 @@
-This is my DevDisk, where I put evertyhing in it
+This is my DevDisk, where I put evertyhing on it
