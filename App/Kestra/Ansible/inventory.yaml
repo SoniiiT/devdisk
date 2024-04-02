@@ -5,41 +5,41 @@ all:
         pve-srv-01:
           ansible_host: 192.168.178.50
           ansible_user: root
-          ansible_ssh_pass: uqt8CAQ_kjm4jdm2ybu
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     docker:
       hosts:
         docker-srv-mgm:
           ansible_host: 192.168.178.51
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         docker-srv-01:
           ansible_host: 192.168.178.60
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         docker-srv-02:
           ansible_host: 192.168.178.61
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     appserver:
       hosts:
         app-srv-01:
           ansible_host: 192.168.178.62
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     lxc:
       hosts:
         app-lxc-01:
           ansible_host: 192.168.178.3
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         app-lxc-02:
           ansible_host: 192.168.178.63
           ansible_user: ansible
-          ansible_ssh_pass: JA*XjsWH8qCosNgLfZKPRpXQ
+          ansible_ssh_pass: PASSWORD
           ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
