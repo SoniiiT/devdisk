@@ -17,19 +17,19 @@ variable "proxmox_api_token_secret" {
 }
 
 # Resource Definiation for the VM Template
-source "proxmox" "ubuntu-server-jammy" {
- 
+source "proxmox-iso" "ubuntu-server-22-04" {
+
     # Proxmox Connection Settings
     proxmox_url = "${var.proxmox_api_url}"
     username = "${var.proxmox_api_token_id}"
     token = "${var.proxmox_api_token_secret}"
     # (Optional) Skip TLS Verification
-    # insecure_skip_tls_verify = true
+    insecure_skip_tls_verify = true
     
     # VM General Settings
-    node = "your-proxmox-node"
-    vm_id = "100"
-    vm_name = "ubuntu-server-jammy"
+    node = "Proxmox-Node-Name"
+    # vm_id = "100"
+    vm_name = "ubuntu-server-22-04"
     template_description = "Ubuntu Server jammy Image"
 
     # VM OS Settings
@@ -37,8 +37,8 @@ source "proxmox" "ubuntu-server-jammy" {
     # iso_file = "local:iso/ubuntu-22.04-live-server-amd64.iso"
     # - or -
     # (Option 2) Download ISO
-    # iso_url = "https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso"
-    # iso_checksum = "84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f"
+    iso_url = "https://releases.ubuntu.com/22.04.4/ubuntu-22.04.4-live-server-amd64.iso"
+    iso_checksum = "45f873de9f8cb637345d6e66a583762730bbea30277ef7b32c9c3bd6700a32b2"
     iso_storage_pool = "local"
     unmount_iso = true
 
@@ -49,18 +49,20 @@ source "proxmox" "ubuntu-server-jammy" {
     scsi_controller = "virtio-scsi-pci"
 
     disks {
-        disk_size = "20G"
-        format = "qcow2"
-        storage_pool = "local-lvm"
-        storage_pool_type = "lvm"
+        disk_size = "32G"
+        format = "raw"
+        storage_pool = "Local-lvm"
         type = "virtio"
     }
 
+    # VM Socket Settings
+    sockets = "1"
+
     # VM CPU Settings
-    cores = "1"
+    cores = "4"
     
     # VM Memory Settings
-    memory = "2048" 
+    memory = "8192" 
 
     # VM Network Settings
     network_adapters {
@@ -86,19 +88,19 @@ source "proxmox" "ubuntu-server-jammy" {
     boot_wait = "5s"
 
     # PACKER Autoinstall Settings
-    http_directory = "http" 
+    http_directory = "full/path/to/http" 
     # (Optional) Bind IP Address and Port
-    # http_bind_address = "0.0.0.0"
-    # http_port_min = 8802
-    # http_port_max = 8802
+    http_bind_address = "ip-address-of-host"
+    http_port_min = 8802
+    http_port_max = 8802
 
     ssh_username = "tony"
 
     # (Option 1) Add your Password here
-    ssh_password = "your-password"
+    # ssh_password = "your-password"
     # - or -
     # (Option 2) Add your Private SSH KEY file here
-    # ssh_private_key_file = "~/.ssh/id_rsa"
+    ssh_private_key_file = "full/path/to/id_rsa"
 
     # Raise the timeout, when installation takes longer
     ssh_timeout = "20m"
@@ -107,8 +109,8 @@ source "proxmox" "ubuntu-server-jammy" {
 # Build Definition to create the VM Template
 build {
 
-    name = "ubuntu-server-jammy"
-    sources = ["source.proxmox.ubuntu-server-jammy"]
+    name = "ubuntu-server-22-04"
+    sources = ["source.proxmox-iso.ubuntu-server-22-04"]
 
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #1
     provisioner "shell" {
@@ -128,7 +130,7 @@ build {
 
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
     provisioner "file" {
-        source = "files/99-pve.cfg"
+        source = "full/path/to/files/99-pve.cfg"
         destination = "/tmp/99-pve.cfg"
     }
 
@@ -136,7 +138,4 @@ build {
     provisioner "shell" {
         inline = [ "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg" ]
     }
-
-    # Add additional provisioning scripts here
-    # ...
 }
