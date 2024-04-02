@@ -37,13 +37,13 @@ resource "proxmox_vm_qemu" "your-vm" {
     os_type = "cloud-init"
 
     # (Optional) IP Address and Gateway
-    # ipconfig0 = "ip=0.0.0.0/0,gw=0.0.0.0"
+    ipconfig0 = "ip=0.0.0.0/0,gw=0.0.0.0"
     
     # (Optional) Default User
-    # ciuser = "your-username"
+    ciuser = "your-username"
     
     # (Optional) Add your SSH KEY
-    # sshkeys = <<EOF
-    # #YOUR-PUBLIC-SSH-KEY
-    # EOF
+    sshkeys = <<EOF
+    #YOUR-PUBLIC-SSH-KEY
+    EOF
 }
