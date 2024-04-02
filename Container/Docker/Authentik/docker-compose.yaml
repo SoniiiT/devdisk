@@ -84,9 +84,9 @@ services:
     user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/tony/docker-compose/authentik/media:/media
-      - /home/tony/docker-compose/authentik/certs:/certs
-      - /home/tony/docker-compose/authentik/custom-templates:/templates
+      - /home/soniiit/docker-compose/authentik/media:/media
+      - /home/soniiit/docker-compose/authentik/certs:/certs
+      - /home/soniiit/docker-compose/authentik/custom-templates:/templates
     depends_on:
       - postgresql
       - redis

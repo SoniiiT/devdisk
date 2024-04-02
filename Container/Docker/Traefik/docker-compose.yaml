@@ -15,9 +15,9 @@ services:
       - 9090:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/tony/docker-compose/traefik/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - /home/tony/docker-compose/traefik/config/conf/:/etc/traefik/conf/
-      - /home/tony/docker-compose/traefik/config/certs/:/etc/traefik/certs/
+      - /home/soniiit/docker-compose/traefik/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - /home/soniiit/docker-compose/traefik/config/conf/:/etc/traefik/conf/
+      - /home/soniiit/docker-compose/traefik/config/certs/:/etc/traefik/certs/
     # -- (Optional) When using Cloudflare as Cert Resolver
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
