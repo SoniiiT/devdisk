@@ -9,7 +9,7 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - /docker/docker-compose/uptime-kuma/uptime-kuma-data:/app/data
+      - /home/tony/docker-compose/uptime-kuma/uptime-kuma-data:/app/data
     networks:
       - traefik-nw
     ports:
