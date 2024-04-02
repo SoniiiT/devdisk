@@ -6,7 +6,7 @@ networks:
 
 services:
   dockge:
-    image: louislam/dockge:1
+    image: louislam/dockge:latest
     container_name: dockge-01
     restart: unless-stopped
     ports:

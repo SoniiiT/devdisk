@@ -1,7 +1,8 @@
 version: "2"
+
 services:
   haproxy:
-    image: eeacms/haproxy
+    image: eeacms/haproxy:latest
     depends_on:
     - webapp
     ports:
@@ -15,6 +16,7 @@ services:
       HTTPCHK: "GET /"
       INTER: "5s"
       LOG_LEVEL: "info"
+
   webapp:
     image: eeacms/hello
     environment:

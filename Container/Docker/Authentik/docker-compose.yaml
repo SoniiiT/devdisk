@@ -52,9 +52,11 @@ services:
     volumes:
       - ./media:/media
       - ./custom-templates:/templates
+    ports:
+      - "9000:9000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.authentik.rule=Host(`authentik.home.soniiit.net`)"
+      - "traefik.http.routers.authentik.rule=Host(`authentik.example.com`)"
       - "traefik.http.routers.authentik.entrypoints=websecure"
       - "traefik.http.routers.authentik.tls=true"
       - "traefik.http.routers.authentik.tls.certresolver=cloudflare"

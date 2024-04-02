@@ -1,6 +1,0 @@
-- name: >
-  # Comment
-  ansible.builtin.add_host:
-    groups:
-      - element
-    name: group

@@ -1,7 +1,7 @@
 services:
   redis:
-    image: redis:6
-    container_name: owncloud_redis
+    image: redis:latest
+    container_name: redis
     restart: always
     command: ["--databases", "1"]
     healthcheck:
