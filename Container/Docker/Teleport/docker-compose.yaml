@@ -8,8 +8,8 @@ services:
     image: public.ecr.aws/gravitational/teleport-distroless:13
     container_name: teleport
     volumes:
-      - ./config:/etc/teleport
-      - ./data:/var/lib/teleport
+      - /docker/docker-compose/teleport/config:/etc/teleport
+      - /docker/docker-compose/teleport/data:/var/lib/teleport
     # -- (Optional) Traefik example configuration
     labels:
       - "traefik.enable=true"
