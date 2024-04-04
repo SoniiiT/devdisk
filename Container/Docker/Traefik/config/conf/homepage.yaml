@@ -1,23 +1,23 @@
 "delete-me"
 # http:
 #   routers:
-#     uptime-router:
-#       rule: "Host(`uptime.home.soniiit.net`)"
+#     homepage-router:
+#       rule: "Host(`homepage.home.soniiit.net`)"
 #       entryPoints: ["websecure"]
 #       tls:
 #         certResolver: cloudflare
-#       service: "uptime-service"
+#       service: "homepage-service"
 #       middlewares:
-#         - uptime-middleware
+#         - homepage-middleware
 
 #   services:
-#     uptime-service:
+#     homepage-service:
 #       loadBalancer:
 #         servers:
 #           - url: "http://192.168.178.20:3001"
 
 #   middlewares:
-#     uptime-middleware:
+#     homepage-middleware:
 #       stripPrefix:
 #         prefixes:
-#           - "/uptime"
+#           - "/homepage"
