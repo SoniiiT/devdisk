@@ -4,7 +4,7 @@ namespace: ansible
 triggers:
 - id: daily-update
   type: io.kestra.core.models.triggers.types.Schedule
-  cron: "0 20 * * *"
+  cron: "0 20 * * 0"
 
 tasks:
 - id: setup
@@ -15,6 +15,7 @@ tasks:
     inputs:
       inventory.yaml: "{{ read('inventory.yaml') }}"
       update-linux.yaml: "{{ read('update-linux.yaml') }}"
+      id_rsa: "{{ read('id_rsa') }}"
 
   - id: ansible_task
     type: io.kestra.plugin.ansible.cli.AnsibleCLI
@@ -22,5 +23,6 @@ tasks:
       image: cytopia/ansible:latest-tools
     beforeCommands:
     - apk add --no-cache sshpass
+    - chmod 600 id_rsa
     commands:
     - ansible-playbook -i inventory.yaml update-linux.yaml
