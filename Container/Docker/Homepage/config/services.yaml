@@ -1,0 +1,80 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Networking:
+  - Fritz!Box Main:
+      href: http://192.168.178.1
+      icon: avmfritzbox.png
+      description: Fritz!Box Main
+      siteMonitor: http://192.168.178.1
+      widget:
+        type: fritzbox
+        url: http://192.168.178.1
+  - Fritz!Box Tony:
+      href: http://192.168.178.2
+      icon: avmfritzbox.png
+      description: Fritz!Box Tony
+      siteMonitor: http://192.168.178.2
+      widget:
+        type: fritzbox
+        url: http://192.168.178.2
+
+- Infrastructure and Data:
+  - Proxmox:
+      href: https://192.168.178.10:8006
+      icon: proxmox.png
+      description: PVE-SRV-01
+      siteMonitor: https://192.168.178.10:8006
+      widget:
+        type: proxmox
+        url: https://192.168.178.10:8006
+        username: {? {HOMEPAGE_VAR_PROXMOX_USERNAME: ''} : ''}
+        password: {? {HOMEPAGE_VAR_PROXMOX_PASSWORD: ''} : ''}
+
+- Management:
+  - Portainer:
+      href: https://192.168.178.11:9443
+      icon: portainer.png
+      description: Portainer on Docker-SRV-MGM
+      widget:
+        type: portainer
+        url: https://https://192.168.178.11:9443
+        env: 2
+        key: {? {HOMEPAGE_VAR_PORTAINER_KEY: ''} : ''}
+  - Dockge-01:
+      href: https://192.168.178.20:5001
+      icon: si-docker-#2496ED
+      description: Dockge on Docker-SRV-01
+  - Dockge-02:
+      href: https://192.168.178.21:5001
+      icon: si-docker-#2496ED
+      description: Dockge on Docker-SRV-02
+
+- Monitoring:
+  - UptimeKuma:
+      href: https://192.168.178.11:3001
+      description: Uptimekuma on Docker-SRV-MGM
+      icon: uptime-kuma.png
+      widget:
+        type: uptimekuma
+        url: https://192.168.178.11:3001
+        slug: publicservices
+
+- Kubernetes:
+
+- Automation:
+  - Kestra:
+      href: https://192.168.178.20:1337
+      description: Kestra on Docker-SRV-01
+      icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
+
+- IoT and Smarthome:
+  - Home Assistant:
+      href: https://192.168.178.20:8123
+      icon: home-assistant.png
+      description: Homeassistant on Docker-SRV-01
+      widget:
+        type: homeassistant
+        url: https://192.168.178.20:8123
+        key: {? {HOMEPAGE_VAR_HOMEASSISTANT_KEY: ''} : ''}
+        custom:

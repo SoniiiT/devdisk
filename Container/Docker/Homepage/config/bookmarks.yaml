@@ -1,0 +1,26 @@
+- Github-Repositories:
+  - Devdisk:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/SoniiiT/devdisk
+  - Obsidian-Vault:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/SoniiiT/soniiits-obsidian-vault
+  - Instock-Project:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/Instock-IT/instockproject
+  - Devdisk-School:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/SoniiiT/devdiskschool
+
+- Cloud Services:
+  - Cloudflare:
+    - icon: cloudflare.png
+      href: https://dash.cloudflare.com
+  - Netbird:
+    - icon: https://netbird.io/_next/static/media/netbird-icon.00225e97.svg
+      href: https://app.netbird.io
+
+- Services:
+  - PowerDNS:
+    - icon: https://repository-images.githubusercontent.com/9693534/0d32f700-b8b4-11eb-9d53-0e8d883208a2
+      href: http://dns.home.soniiit.net
