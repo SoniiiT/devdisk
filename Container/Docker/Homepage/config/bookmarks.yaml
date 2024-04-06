@@ -20,7 +20,16 @@
     - icon: https://netbird.io/_next/static/media/netbird-icon.00225e97.svg
       href: https://app.netbird.io
 
-- Services:
+- Local Services:
   - PowerDNS:
     - icon: https://repository-images.githubusercontent.com/9693534/0d32f700-b8b4-11eb-9d53-0e8d883208a2
-      href: http://dns.home.soniiit.net
+      href: http://192.168.178.3
+  - Dockge-01:
+    - icon: si-docker-#2496ED
+      href: http://dockge-01.home.soniiit.net
+  - Dockge-02:
+    - icon: si-docker-#2496ED
+      href: http://dockge-02.home.soniiit.net
+  - Kestra:
+    - icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
+      href: http://kestra.home.soniiit.net

@@ -27,7 +27,7 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     insecure_skip_tls_verify = true
     
     # VM General Settings
-    node = "Proxmox-Node-Name"
+    node = "pve-srv-01"
     # vm_id = "100"
     vm_name = "ubuntu-server-22-04"
     template_description = "Ubuntu Server jammy Image"
@@ -51,7 +51,7 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     disks {
         disk_size = "32G"
         format = "raw"
-        storage_pool = "Local-lvm"
+        storage_pool = "VM-Storage"
         type = "virtio"
     }
 
@@ -59,10 +59,10 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     sockets = "1"
 
     # VM CPU Settings
-    cores = "4"
+    cores = "2"
     
     # VM Memory Settings
-    memory = "8192" 
+    memory = "2048" 
 
     # VM Network Settings
     network_adapters {
@@ -73,7 +73,7 @@ source "proxmox-iso" "ubuntu-server-22-04" {
 
     # VM Cloud-Init Settings
     cloud_init = true
-    cloud_init_storage_pool = "local-lvm"
+    cloud_init_storage_pool = "VM-Storage"
 
     # PACKER Boot Commands
     boot_command = [
@@ -88,19 +88,19 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     boot_wait = "5s"
 
     # PACKER Autoinstall Settings
-    http_directory = "full/path/to/http" 
+    http_directory = "C:/Users/ToniR/git/devdisk/App/Packer/Ubuntu-22.04/http" 
     # (Optional) Bind IP Address and Port
-    http_bind_address = "ip-address-of-host"
+    http_bind_address = "192.168.178.90"
     http_port_min = 8802
     http_port_max = 8802
 
-    ssh_username = "tony"
+    ssh_username = "soniiit"
 
     # (Option 1) Add your Password here
     # ssh_password = "your-password"
     # - or -
     # (Option 2) Add your Private SSH KEY file here
-    ssh_private_key_file = "full/path/to/id_rsa"
+    ssh_private_key_file = "C:/ssh/id_rsa"
 
     # Raise the timeout, when installation takes longer
     ssh_timeout = "20m"
@@ -130,7 +130,7 @@ build {
 
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
     provisioner "file" {
-        source = "full/path/to/files/99-pve.cfg"
+        source = "C:/Users/ToniR/git/devdisk/App/Packer/Ubuntu-22.04/files/99-pve.cfg"
         destination = "/tmp/99-pve.cfg"
     }
 

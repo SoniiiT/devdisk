@@ -1,23 +1,23 @@
 "delete-me"
 # http:
 #   routers:
-#     dockge-router:
-#       rule: "Host(`dockge.home.soniiit.net`)"
+#     dockge-01-router:
+#       rule: "Host(`dockge-01.home.soniiit.net`)"
 #       entryPoints: ["websecure"]
 #       tls:
 #         certResolver: cloudflare
-#       service: "dockge-service"
+#       service: "dockge-01-service"
 #       middlewares:
-#         - dockge-middleware
+#         - dockge-01-middleware
 
 #   services:
-#     dockge-service:
+#     dockge-01-service:
 #       loadBalancer:
 #         servers:
 #           - url: "http://192.168.178.20:5001"
 
 #   middlewares:
-#     dockge-middleware:
+#     dockge-01-middleware:
 #       stripPrefix:
 #         prefixes:
-#           - "/dockge"
+#           - "/dockge-01"

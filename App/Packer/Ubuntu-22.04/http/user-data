@@ -22,7 +22,7 @@ autoinstall:
     package_upgrade: false
     timezone: Europe/Berlin
     users:
-    - name: user
+    - name: soniiit
       groups: [adm, sudo]
       lock-passwd: false
       sudo: ALL=(ALL) NOPASSWD:ALL
@@ -30,4 +30,4 @@ autoinstall:
       # passwd: your-password
       # - or -
       ssh_authorized_keys:
-      - ssh-rsa your-ssh-key
+      - ssh-rsa

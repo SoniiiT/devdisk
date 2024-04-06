@@ -2,7 +2,7 @@
 # https://gethomepage.dev/latest/configs/services
 
 - Networking:
-  - Fritz!Box Main:
+  - FritzBox Main:
       href: http://192.168.178.1
       icon: avmfritzbox.png
       description: Fritz!Box Main
@@ -10,71 +10,123 @@
       widget:
         type: fritzbox
         url: http://192.168.178.1
-  - Fritz!Box Tony:
+  - FritzBox Tony:
       href: http://192.168.178.2
       icon: avmfritzbox.png
       description: Fritz!Box Tony
       siteMonitor: http://192.168.178.2
+  - Traefik-MGM:
+      href: http://docker-srv-mgm.home.soniiit.net:9090
+      icon: traefik.png
+      description: Traefik-MGM on Docker-SRV-MGM
+      siteMonitor: http://docker-srv-mgm.home.soniiit.net:9090
       widget:
-        type: fritzbox
-        url: http://192.168.178.2
+        type: traefik
+        url: http://docker-srv-mgm.home.soniiit.net:9090
+  - Traefik-01:
+      href: http://docker-srv-01.home.soniiit.net:9090
+      icon: traefik.png
+      description: Traefik-MGM on Docker-SRV-MGM
+      siteMonitor: http://docker-srv-01.home.soniiit.net:9090
+      widget:
+        type: traefik
+        url: http://docker-srv-01.home.soniiit.net:9090
+  - Traefik-02:
+      href: http://docker-srv-02.home.soniiit.net:9090
+      icon: traefik.png
+      description: Traefik-MGM on Docker-SRV-MGM
+      siteMonitor: http://docker-srv-02.home.soniiit.net:9090
+      widget:
+        type: traefik
+        url: http://docker-srv-02.home.soniiit.net:9090
 
 - Infrastructure and Data:
   - Proxmox:
-      href: https://192.168.178.10:8006
+      href: https://proxmox.home.soniiit.net:8006
       icon: proxmox.png
       description: PVE-SRV-01
-      siteMonitor: https://192.168.178.10:8006
+      siteMonitor: https://proxmox.home.soniiit.net:8006
       widget:
         type: proxmox
-        url: https://192.168.178.10:8006
-        username: {? {HOMEPAGE_VAR_PROXMOX_USERNAME: ''} : ''}
-        password: {? {HOMEPAGE_VAR_PROXMOX_PASSWORD: ''} : ''}
+        url: https://proxmox.home.soniiit.net:8006
+        username: homepage@pam!homepage
+        password: ProxmoxSecretAPIKey
+        node: pve-srv-01
 
 - Management:
-  - Portainer:
-      href: https://192.168.178.11:9443
+  - Portainer-MGM:
+      href: https://portainer.home.soniiit.net/#!/2/docker/dashboard
       icon: portainer.png
       description: Portainer on Docker-SRV-MGM
       widget:
         type: portainer
-        url: https://https://192.168.178.11:9443
+        url: https://portainer.home.soniiit.net
         env: 2
-        key: {? {HOMEPAGE_VAR_PORTAINER_KEY: ''} : ''}
-  - Dockge-01:
-      href: https://192.168.178.20:5001
-      icon: si-docker-#2496ED
-      description: Dockge on Docker-SRV-01
-  - Dockge-02:
-      href: https://192.168.178.21:5001
-      icon: si-docker-#2496ED
-      description: Dockge on Docker-SRV-02
+        key: PortainerSecretAPIKey
+  - Portainer-01:
+      href: https://portainer.home.soniiit.net/#!/3/docker/dashboard
+      icon: portainer.png
+      description: Portainer on Docker-SRV-MGM
+      widget:
+        type: portainer
+        url: https://portainer.home.soniiit.net
+        env: 3
+        key: PortainerSecretAPIKey
+  - Portainer-02:
+      href: https://portainer.home.soniiit.net/#!/4/docker/dashboard
+      icon: portainer.png
+      description: Portainer on Docker-SRV-MGM
+      widget:
+        type: portainer
+        url: https://portainer.home.soniiit.net
+        env: 4
+        key: PortainerSecretAPIKey
+  - Whats-Up-Docker:
+      href: http://wud.home.soniiit.net
+      icon: https://github.com/fmartinou/whats-up-docker/raw/master/docs/wud_logo_250.png
+      description: Whats up docker on Docker-SRV-01
+      widget:
+        type: whatsupdocker
+        url: http://wud.home.soniiit.net
 
 - Monitoring:
   - UptimeKuma:
-      href: https://192.168.178.11:3001
+      href: http://uptime.home.soniiit.net
       description: Uptimekuma on Docker-SRV-MGM
       icon: uptime-kuma.png
       widget:
         type: uptimekuma
-        url: https://192.168.178.11:3001
-        slug: publicservices
+        url: http://uptime.home.soniiit.net
+        slug: homepage
 
 - Kubernetes:
+  - Portainer-K8s:
+      href: https://192.168.178.60:9443
+      icon: portainer.png
+      description: Portainer on Kubernetes
+      widget:
+        type: portainer
+        url: https://192.168.178.60:9443
+        env: 2
+        key: {? {HOMEPAGE_VAR_PORTAINER_KUBE_KEY: ''} : ''}
 
-- Automation:
-  - Kestra:
-      href: https://192.168.178.20:1337
-      description: Kestra on Docker-SRV-01
-      icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
+- Services:
+  - Gameserver:
+      href: http://192.168.178.30
+      icon: https://www.git.je/Alex/Pterodactyl-Panel/raw/commit/d2c770d21823c0f71ac14f30e9edd86eb5a15d16/public/favicons/android-icon-192x192.png
+      description: Gameserver on APP-SRV-01
+      widget:
+        type: pterodactyl
+        url: http://192.168.178.30
+        key: PterodactylSecretAPIKey
 
 - IoT and Smarthome:
   - Home Assistant:
-      href: https://192.168.178.20:8123
+      href: https://ha.home.soniiit.net
       icon: home-assistant.png
       description: Homeassistant on Docker-SRV-01
       widget:
         type: homeassistant
-        url: https://192.168.178.20:8123
-        key: {? {HOMEPAGE_VAR_HOMEASSISTANT_KEY: ''} : ''}
+        url: https://ha.home.soniiit.net
+        key: HomeassistentSecretAPIKey
         custom:

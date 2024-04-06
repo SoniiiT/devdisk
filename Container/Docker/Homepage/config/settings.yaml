@@ -25,8 +25,8 @@ layout:
     icon: mdi-auto-fix-#FFFFFF
   Monitoring:
     icon: mdi-list-status-#FFFFFF
-  Automation:
-    icon: mdi-cog-play-#FFFFFF
+  Services:
+    icon: mdi-cog-#FFFFFF
   IoT and Smarthome:
     icon: mdi-home-#FFFFFF
   Kubernetes:

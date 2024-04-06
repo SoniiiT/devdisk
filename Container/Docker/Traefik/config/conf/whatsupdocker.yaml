@@ -1,23 +1,23 @@
 "delete-me"
 # http:
 #   routers:
-#     kestra-router:
-#       rule: "Host(`kestra.home.soniiit.net`)"
+#     wud-router:
+#       rule: "Host(`wud.home.soniiit.net`)"
 #       entryPoints: ["websecure"]
 #       tls:
 #         certResolver: cloudflare
-#       service: "kestra-service"
+#       service: "wud-service"
 #       middlewares:
-#         - kestra-middleware
+#         - wud-middleware
 
 #   services:
-#     kestra-service:
+#     wud-service:
 #       loadBalancer:
 #         servers:
-#           - url: "http://192.168.178.20:1337"
+#           - url: "http://192.168.178.20:4000"
 
 #   middlewares:
-#     kestra-middleware:
+#     wud-middleware:
 #       stripPrefix:
 #         prefixes:
-#           - "/kestra"
+#           - "/wud"
