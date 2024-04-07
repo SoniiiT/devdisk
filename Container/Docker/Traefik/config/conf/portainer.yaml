@@ -14,7 +14,7 @@
 #     portainer-service:
 #       loadBalancer:
 #         servers:
-#           - url: "http://192.168.178.11:9443"
+#           - url: "https://192.168.178.11:9443"
 
 #   middlewares:
 #     portainer-middleware:
