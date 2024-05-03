@@ -10,7 +10,6 @@ services:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_INCLUDE_STOPPED=true
       - WATCHTOWER_REVIVE_STOPPED=false
-      - WATCHTOWER_SCHEDULE=0 0 21 * * *
       - WATCHTOWER_NOTIFICATIONS=shoutrrr
       - WATCHTOWER_NOTIFICATION_URL=discord://DISCORD_TOKEN@DISCORD_ID?splitlines=no
       - WATCHTOWER_NOTIFICATION_TEMPLATE={{range .}}[{{.Level}}] {{.Message}}{{println}}{{end}}
