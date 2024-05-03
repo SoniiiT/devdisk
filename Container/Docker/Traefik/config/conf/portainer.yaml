@@ -1,23 +1,21 @@
 "delete-me"
 # http:
 #   routers:
-#     portainer-router:
+#     portainer-route:
 #       rule: "Host(`portainer.home.soniiit.net`)"
-#       entryPoints: ["websecure"]
+#       service: portainer-service
+#       entryPoints:
+#         - websecure
 #       tls:
 #         certResolver: cloudflare
-#       service: "portainer-service"
-#       middlewares:
-#         - portainer-middleware
 
 #   services:
 #     portainer-service:
 #       loadBalancer:
+#         serversTransport: insecureTransport
 #         servers:
 #           - url: "https://192.168.178.11:9443"
 
-#   middlewares:
-#     portainer-middleware:
-#       stripPrefix:
-#         prefixes:
-#           - "/portainer"
+#   serversTransports:
+#     insecureTransport:
+#       insecureSkipVerify: true
