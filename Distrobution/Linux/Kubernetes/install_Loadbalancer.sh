@@ -127,8 +127,8 @@ vrrp_instance VI_1 {
 }" >> /etc/keepalived/keepalived.conf
 fi
 
-sudo useradd keepalived_script
-sudo chmod +x /etc/keepalived/check_apiserver.sh
+sudo useradd keepalived_script #FIXME Kann keinen Benutzer mit dem Namen keepalived_script erstellen
+sudo chmod +x /etc/keepalived/check_apiserver.sh #FIXME Kann der Datei keine Berechtigung erteilen
 
 # Restarting and enabling Keepalived
 systemctl restart keepalived && systemctl enable keepalived
