@@ -113,19 +113,22 @@ vrrp_instance VI_1 {
     authentication {
         auth_type PASS
         auth_pass mysecret
-    }
+}
     virtual_ipaddress {
         $ip_virtual
-    }
+}
     track_script {
         check_apiserver
-    }
+}
     unicast_src_ip $ip_lb_1
     unicast_peer {
         "$lb_list"
+}
 }" >> /etc/keepalived/keepalived.conf
 fi
 
+sudo useradd keepalived_script
+sudo chmod +x /etc/keepalived/check_apiserver.sh
 
 # Restarting and enabling Keepalived
 systemctl restart keepalived && systemctl enable keepalived
