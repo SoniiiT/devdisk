@@ -7,8 +7,8 @@ services:
     image: mariadb:10.11.4
     restart: always
     volumes:
-      - ${ZABBIX_DATA_PATH}/zabbix-db/mariadb:/var/lib/mysql:rw
-      - ${ZABBIX_DATA_PATH}/zabbix-db/backups:/backups
+      - /home/soniiit/docker-compose/zabbix/zabbix-db/mariadb:/var/lib/mysql:rw
+      - /home/soniiit/docker-compose/zabbix/zabbix-db/backups:/backups
     command:
       - mariadbd
       - --character-set-server=utf8mb4
@@ -29,14 +29,14 @@ services:
       - 10051:10051
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/alertscripts:/usr/lib/zabbix/alertscripts:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/externalscripts:/usr/lib/zabbix/externalscripts:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/dbscripts:/var/lib/zabbix/dbscripts:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/export:/var/lib/zabbix/export:rw
-      - ${ZABBIX_DATA_PATH}/zabbix-server/modules:/var/lib/zabbix/modules:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/enc:/var/lib/zabbix/enc:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-server/mibs:/var/lib/zabbix/mibs:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/alertscripts:/usr/lib/zabbix/alertscripts:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/externalscripts:/usr/lib/zabbix/externalscripts:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/dbscripts:/var/lib/zabbix/dbscripts:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/export:/var/lib/zabbix/export:rw
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/modules:/var/lib/zabbix/modules:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/enc:/var/lib/zabbix/enc:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-server/mibs:/var/lib/zabbix/mibs:ro
     environment:
       - MYSQL_ROOT_USER=root
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -60,15 +60,15 @@ services:
       - 8080:8080
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-web/nginx:/etc/ssl/nginx:ro
-      - ${ZABBIX_DATA_PATH}/zabbix-web/modules/:/usr/share/zabbix/modules/:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-web/nginx:/etc/ssl/nginx:ro
+      - /home/soniiit/docker-compose/zabbix/zabbix-web/modules/:/usr/share/zabbix/modules/:ro
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - DB_SERVER_HOST=zabbix-db
       - ZBX_SERVER_HOST=zabbix-server
       - ZBX_SERVER_NAME=Zabbix Docker
-      - PHP_TZ=Europe/London
+      - PHP_TZ=Europe/Berin
     depends_on:
       - zabbix-db
       - zabbix-server
