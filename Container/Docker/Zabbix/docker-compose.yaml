@@ -1,75 +1,40 @@
-version: '3.3'
+version: "3.7"
 
 services:
-  # Zabbix database
-  zabbix-db:
-    container_name: zabbix-db
-    image: mariadb:10.11.4
-    restart: always
-    volumes:
-      - /home/soniiit/docker-compose/zabbix/zabbix-db/mariadb:/var/lib/mysql:rw
-      - /home/soniiit/docker-compose/zabbix/zabbix-db/backups:/backups
-    command:
-      - mariadbd
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_bin
-      - --default-authentication-plugin=mysql_native_password
-    environment:
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    stop_grace_period: 1m
-
-  # Zabbix server
   zabbix-server:
-    container_name: zabbix-server
-    image: zabbix/zabbix-server-mysql:ubuntu-6.4.14
-    restart: always
+    image: zabbix/zabbix-server-mysql:latest
     ports:
-      - 10051:10051
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/alertscripts:/usr/lib/zabbix/alertscripts:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/externalscripts:/usr/lib/zabbix/externalscripts:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/dbscripts:/var/lib/zabbix/dbscripts:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/export:/var/lib/zabbix/export:rw
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/modules:/var/lib/zabbix/modules:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/enc:/var/lib/zabbix/enc:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-server/mibs:/var/lib/zabbix/mibs:ro
+      - "10051:10051"
     environment:
-      - MYSQL_ROOT_USER=root
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - DB_SERVER_HOST=zabbix-db
-      - ZBX_STARTPINGERS=${ZBX_STARTPINGERS}
+      - DB_SERVER_HOST=db
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix_pass
     depends_on:
-      - zabbix-db
-    stop_grace_period: 30s
-    sysctls:
-      - net.ipv4.ip_local_port_range=1024 65000
-      - net.ipv4.conf.all.accept_redirects=0
-      - net.ipv4.conf.all.secure_redirects=0
-      - net.ipv4.conf.all.send_redirects=0
+      - mysql-db
 
-  # Zabbix web UI
-  zabbix-web:
-    container_name: zabbix-web
-    image: zabbix/zabbix-web-nginx-mysql:ubuntu-6.0.29
-    restart: always
-    ports:
-      - 8080:8080
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-web/nginx:/etc/ssl/nginx:ro
-      - /home/soniiit/docker-compose/zabbix/zabbix-web/modules/:/usr/share/zabbix/modules/:ro
+  mysql-db:
+    image: mysql:5.7
     environment:
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - DB_SERVER_HOST=zabbix-db
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix_pass
+      - MYSQL_ROOT_PASSWORD=root_pass
+    volumes:
+      - zabbix-db:/var/lib/mysql
+
+  zabbix-web-nginx-mysql:
+    image: zabbix/zabbix-web-nginx-mysql:latest
+    ports:
+      - "8080:80"
+    environment:
+      - DB_SERVER_HOST=db
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix_pass
       - ZBX_SERVER_HOST=zabbix-server
-      - ZBX_SERVER_NAME=Zabbix Docker
-      - PHP_TZ=Europe/Berin
     depends_on:
-      - zabbix-db
       - zabbix-server
-    stop_grace_period: 10s
+
+volumes:
+  zabbix-db:
