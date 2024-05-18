@@ -87,12 +87,12 @@ services:
     labels:
     # inform traefik to serve this service
       - "traefik.enable=true"
-      - "traefik.http.routers.graylog.rule=Host(`graylog.lab.lan`)"
+      - "traefik.http.routers.graylog.rule=Host(`graylog.example.com`)"
       - "traefik.http.routers.graylog.service=graylog"
       - "traefik.http.routers.graylog.entrypoints=https"
       - "traefik.http.services.graylog.loadbalancer.server.port=9000"
       - "traefik.http.routers.graylog.middlewares=graylog-header"
-      - "traefik.http.middlewares.graylog-header.headers.customrequestheaders.X-Graylog-Server-URL=http://graylog.lab.lan/"
+      - "traefik.http.middlewares.graylog-header.headers.customrequestheaders.X-Graylog-Server-URL=http://graylog.example.com/"
       - "traefik.docker.network=graylog"
     
     entrypoint: /usr/bin/tini -- wait-for-it opensearch:9200 --  /docker-entrypoint.sh

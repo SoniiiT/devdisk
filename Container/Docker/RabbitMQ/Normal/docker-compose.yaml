@@ -17,7 +17,7 @@ services:
       - "RABBITMQ_SECURE_PASSWORD=yes"
       - RABBITMQ_LOGS=-
     volumes:
-      - "/docker/rabbitmq:/bitnami/rabbitmq/mnesia"
+      - "./rabbitmq:/bitnami/rabbitmq/mnesia"
 volumes:
   rabbitmq_data:
     driver: local
