@@ -1,4 +1,4 @@
-id: Reboot-Required-Linux
+id: Docker-Clean-Up
 namespace: ansible
 labels:
   Project: Homelab
@@ -12,7 +12,7 @@ tasks:
     type: io.kestra.core.tasks.storages.LocalFiles
     inputs:
       inventory.yaml: "{{ read('inventory.yaml') }}"
-      reboot-required-linux.yaml: "{{ read('reboot-required-linux.yaml') }}"
+      docker-clean-up.yaml: "{{ read('docker-clean-up.yaml') }}"
       id_rsa: "{{ secret('SSH_KEY') }}"
 
   - id: ansible_task
@@ -21,13 +21,10 @@ tasks:
       image: cytopia/ansible:latest-tools
       pullPolicy: IF_NOT_PRESENT
       user: "1000"
-    beforeCommands:
-    - apk add --no-cache sshpass
-    - chmod 600 id_rsa
     commands:
-    - ansible-playbook -i inventory.yaml --key-file id_rsa reboot-required-linux.yaml
+    - ansible-playbook -i inventory.yaml --key-file id_rsa docker-clean-up.yaml
 
 triggers:
-- id: daily-check-reboot
+- id: docker-clean-up
   type: io.kestra.core.models.triggers.types.Schedule
-  cron: "30 21 * * *"
+  cron: "0 20 * * *"
