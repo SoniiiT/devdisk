@@ -2,6 +2,7 @@ id: Update-Linux
 namespace: ansible
 labels:
   Project: Homelab
+  Mode: Auto
 
 tasks:
   - id: setup

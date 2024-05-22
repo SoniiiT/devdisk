@@ -2,6 +2,7 @@ id: Reboot-Required-Linux
 namespace: ansible
 labels:
   Project: Homelab
+  Mode: Auto
 
 tasks:
   - id: setup
