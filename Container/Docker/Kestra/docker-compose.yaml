@@ -1,6 +1,7 @@
 version: "3.3"
 services:
   kestra:
+    image: kestra/kestra:v0.16.2-full
     pull_policy: always
     stdin_open: true
     tty: true
@@ -10,15 +11,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp
-      - ./kestra/data/:/app/data
-    image: kestra/kestra:latest-full
+      - ./data/:/app/data
     command: server local
     networks:
       - traefik-nw
     restart: unless-stopped
     environment:
-      - SECRET_DISCORD_WEBHOOK=${SECRET_DISCORD_WEBHOOK}
-      - SECRET_SSH-KEY=${SECRET_SSH-KEY}
+      - SECRET_SSH_KEY=${SECRET_SSH_KEY}
 networks:
   traefik-nw:
     external: true
