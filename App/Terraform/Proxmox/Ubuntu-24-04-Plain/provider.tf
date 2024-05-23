@@ -9,6 +9,13 @@ terraform {
             version = "3.0.1-rc2"
         }
     }
+    cloud {
+        organization = "soniiit-net"
+
+        workspaces {
+            name = "proxmox"
+        }
+    }
 }
 
 variable "proxmox_api_url" {
