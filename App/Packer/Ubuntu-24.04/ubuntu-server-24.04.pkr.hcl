@@ -37,8 +37,8 @@ source "proxmox-iso" "ubuntu-server-24-04" {
     # iso_file = "local:iso/ubuntu-22.04-live-server-amd64.iso"
     # - or -
     # (Option 2) Download ISO
-    iso_url = "LINK"
-    iso_checksum = "CHECKSUM"
+    iso_url = "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso"
+    iso_checksum = "8762f7e74e4d64d72fceb5f70682e6b069932deedb4949c6975d0f0fe0a91be3"
     iso_storage_pool = "local"
     unmount_iso = true
 
