@@ -28,10 +28,10 @@ resource "proxmox_vm_qemu" "docker-srv-02" {
     # VM CPU Settings
     cores = 2
     sockets = 1
-    cpu = "kvm64"    
+    cpu = "kvm64"
     
     # VM Memory Settings
-    memory = 16.384
+    memory = 16384
 
     # VM Network Settings
     network {

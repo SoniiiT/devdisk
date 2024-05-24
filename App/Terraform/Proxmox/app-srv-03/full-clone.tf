@@ -28,10 +28,10 @@ resource "proxmox_vm_qemu" "app-srv-03" {
     # VM CPU Settings
     cores = 4
     sockets = 1
-    cpu = "kvm64"    
+    cpu = "kvm64"
     
     # VM Memory Settings
-    memory = 16.384
+    memory = 16384
 
     # VM Network Settings
     network {

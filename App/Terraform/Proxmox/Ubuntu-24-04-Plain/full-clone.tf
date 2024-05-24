@@ -28,7 +28,7 @@ resource "proxmox_vm_qemu" "ubuntu-24-04" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "kvm64"    
+    cpu = "kvm64"
     
     # VM Memory Settings
     memory = 1024
@@ -62,10 +62,10 @@ resource "proxmox_vm_qemu" "ubuntu-24-04" {
     os_type = "cloud-init"
 
     # (Optional) IP Address and Gateway
-    ipconfig0 = "ip=192.168.178.80/24,gw=192.168.178.1,ip6=dhcp"
+    ipconfig0 = "ip=192.168.178.XX/24,gw=192.168.178.1,ip6=dhcp"
 
     # (Optional) DNS Servers
-    nameserver = "192.168.178.3"
+    nameserver = "192.168.178.1,192.168.178.3"
 
     # (Optional) Default User
     ciuser = "soniiit"
