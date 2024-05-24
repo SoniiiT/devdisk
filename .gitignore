@@ -3,3 +3,4 @@ App/Packer/Docker/credentials.pkr.hcl
 App/Packer/Docker/http/user-data
 App/Packer/Ubuntu/credentials.pkr.hcl
 App/Packer/Ubuntu/http/user-data
+.vscode/settings.json
