@@ -18,6 +18,9 @@ services:
     restart: unless-stopped
     environment:
       - SECRET_SSH_KEY=${SECRET_SSH_KEY}
+      - SECRET__TF_PVE_API_ID=${SECRET_TF_PVE_API_ID}
+      - SECRET_TF_PVE_API_TOKEN=${SECRET_TF_PVE_API_TOKEN}
+      - SECRET_TF_ID_TOKEN=${SECRET_TF_ID_TOKEN}
 networks:
   traefik-nw:
     external: true
