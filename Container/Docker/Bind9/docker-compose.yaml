@@ -1,9 +1,13 @@
 services:
   bind9:
-    image: docker.io/ubuntu/bind9:9.18-23.10_edge
+    image: ubuntu/bind9:latest
     container_name: bind9
+    environment:
+      - BIND9_USER=root
+      - TZ=Europe/Berlin
     ports:
-      - "53:53"
+      - "53:53/tcp"
+      - "53:53/udp"
     volumes:
       - ./config:/etc/bind/
       - ./cache:/var/cache/bind
