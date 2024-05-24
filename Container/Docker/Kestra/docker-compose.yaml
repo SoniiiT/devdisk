@@ -20,6 +20,7 @@ services:
       - SECRET_SSH_KEY=${SECRET_SSH_KEY}
       - SECRET_TF_PVE_API_TOKEN=${SECRET_TF_PVE_API_TOKEN}
       - SECRET_TF_ID_TOKEN=${SECRET_TF_ID_TOKEN}
+      - SECRET_TSIG_KEY=${SECRET_TSIG_KEY}
 networks:
   traefik-nw:
     external: true
