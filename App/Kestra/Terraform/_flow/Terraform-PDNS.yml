@@ -1,8 +1,8 @@
-id: Terraform-PDNS
+id: Terraform-DNS
 namespace: terraform
 
 variables:
-  chdir: "App/Terraform/applications/pdns"
+  chdir: "App/Terraform/applications/dns"
 
 tasks:
 - id: git
@@ -17,8 +17,7 @@ tasks:
     type: io.kestra.core.tasks.storages.LocalFiles
     inputs:
       credentials.auto.tfvars: |
-        pdns_server_url = "http://192.168.178.3/"
-        pdns_api_key = "{{ secret('PDNS_API_KEY') }}"
+        tsig_key = "{{ secret('PDNS_TSIG_KEY') }}"
 
   - id: terraform
     type: io.kestra.plugin.terraform.cli.TerraformCLI
