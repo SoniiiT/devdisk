@@ -72,23 +72,23 @@ resource "dns_a_record_set" "app-srv-04" {
 }
 
 # Docker Hosts
+resource "dns_a_record_set" "docker-srv-dns" {
+    zone = "home.soniiit.net."
+    name = "docker-srv-dns"
+    addresses = [ "192.168.178.3" ]
+    ttl = 3600
+}
+
 resource "dns_a_record_set" "docker-srv-mgm" {
     zone = "home.soniiit.net."
     name = "docker-srv-mgm"
-    addresses = [ "192.168.178.3" ]
+    addresses = [ "192.168.178.20" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "docker-srv-01" {
     zone = "home.soniiit.net."
     name = "docker-srv-01"
-    addresses = [ "192.168.178.20" ]
-    ttl = 3600
-}
-
-resource "dns_a_record_set" "docker-srv-02" {
-    zone = "home.soniiit.net."
-    name = "docker-srv-02"
     addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
@@ -96,18 +96,25 @@ resource "dns_a_record_set" "docker-srv-02" {
 resource "dns_a_record_set" "wild-docker-srv-01" {
     zone = "home.soniiit.net."
     name = "*.docker-srv-01"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
+    ttl = 3600
+}
+
+resource "dns_a_record_set" "docker-srv-02" {
+    zone = "home.soniiit.net."
+    name = "docker-srv-02"
+    addresses = [ "192.168.178.22" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "wild-docker-srv-02" {
     zone = "home.soniiit.net."
     name = "*.docker-srv-02"
-    addresses = [ "192.168.178.21" ]
+    addresses = [ "192.168.178.22" ]
     ttl = 3600
 }
 
-# Docker Containers on docker-srv-mgm
+# Docker Containers on docker-srv-dns
 resource "dns_a_record_set" "dns" {
     zone = "home.soniiit.net."
     name = "dns"
@@ -115,31 +122,32 @@ resource "dns_a_record_set" "dns" {
     ttl = 3600
 }
 
+# Docker Containers on docker-srv-mgm
 resource "dns_a_record_set" "portainer" {
     zone = "home.soniiit.net."
     name = "portainer"
-    addresses = [ "192.168.178.3" ]
+    addresses = [ "192.168.178.20" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "dockge" {
     zone = "home.soniiit.net."
     name = "dockge"
-    addresses = [ "192.168.178.3" ]
+    addresses = [ "192.168.178.20" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "uptime" {
     zone = "home.soniiit.net."
     name = "uptime"
-    addresses = [ "192.168.178.3" ]
+    addresses = [ "192.168.178.20" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "traefik-mgm" {
     zone = "home.soniiit.net."
     name = "traefik-mgm"
-    addresses = [ "192.168.178.3" ]
+    addresses = [ "192.168.178.20" ]
     ttl = 3600
 }
 
@@ -147,35 +155,35 @@ resource "dns_a_record_set" "traefik-mgm" {
 resource "dns_a_record_set" "authentik" {
     zone = "home.soniiit.net."
     name = "authentik"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "homeassistant" {
     zone = "home.soniiit.net."
     name = "homeassistant"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "homepage" {
     zone = "home.soniiit.net."
     name = "homepage"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "kestra" {
     zone = "home.soniiit.net."
     name = "kestra"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "traefik-01" {
     zone = "home.soniiit.net."
     name = "traefik-01"
-    addresses = [ "192.168.178.20" ]
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
@@ -183,6 +191,6 @@ resource "dns_a_record_set" "traefik-01" {
 resource "dns_a_record_set" "traefik-02" {
     zone = "home.soniiit.net."
     name = "traefik-02"
-    addresses = [ "192.168.178.21" ]
+    addresses = [ "192.168.178.22" ]
     ttl = 3600
 }
