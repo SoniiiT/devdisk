@@ -28,42 +28,6 @@ resource "dns_a_record_set" "proxmox" {
     ttl = 3600
 }
 
-# Docker Hosts
-resource "dns_a_record_set" "docker-srv-mgm" {
-    zone = "home.soniiit.net."
-    name = "docker-srv-mgm"
-    addresses = [ "192.168.178.11" ]
-    ttl = 3600
-}
-
-resource "dns_a_record_set" "docker-srv-01" {
-    zone = "home.soniiit.net."
-    name = "docker-srv-01"
-    addresses = [ "192.168.178.20" ]
-    ttl = 3600
-}
-
-resource "dns_a_record_set" "docker-srv-02" {
-    zone = "home.soniiit.net."
-    name = "docker-srv-02"
-    addresses = [ "192.168.178.21" ]
-    ttl = 3600
-}
-
-resource "dns_a_record_set" "wild-docker-srv-01" {
-    zone = "home.soniiit.net."
-    name = "*.docker-srv-01"
-    addresses = [ "192.168.178.20" ]
-    ttl = 3600
-}
-
-resource "dns_a_record_set" "wild-docker-srv-02" {
-    zone = "home.soniiit.net."
-    name = "*.docker-srv-02"
-    addresses = [ "192.168.178.21" ]
-    ttl = 3600
-}
-
 # Application Hosts
 resource "dns_a_record_set" "app-srv-01" {
     zone = "home.soniiit.net."
@@ -96,14 +60,50 @@ resource "dns_a_record_set" "lancache" {
 resource "dns_a_record_set" "app-srv-03" {
     zone = "home.soniiit.net."
     name = "app-srv-03"
-    addresses = [ "192.168.178.32" ]
+    addresses = [ "192.168.178.31" ]
     ttl = 3600
 }
 
 resource "dns_a_record_set" "app-srv-04" {
     zone = "home.soniiit.net."
     name = "app-srv-04"
-    addresses = [ "192.168.178.33" ]
+    addresses = [ "192.168.178.32" ]
+    ttl = 3600
+}
+
+# Docker Hosts
+resource "dns_a_record_set" "docker-srv-mgm" {
+    zone = "home.soniiit.net."
+    name = "docker-srv-mgm"
+    addresses = [ "192.168.178.3" ]
+    ttl = 3600
+}
+
+resource "dns_a_record_set" "docker-srv-01" {
+    zone = "home.soniiit.net."
+    name = "docker-srv-01"
+    addresses = [ "192.168.178.20" ]
+    ttl = 3600
+}
+
+resource "dns_a_record_set" "docker-srv-02" {
+    zone = "home.soniiit.net."
+    name = "docker-srv-02"
+    addresses = [ "192.168.178.21" ]
+    ttl = 3600
+}
+
+resource "dns_a_record_set" "wild-docker-srv-01" {
+    zone = "home.soniiit.net."
+    name = "*.docker-srv-01"
+    addresses = [ "192.168.178.20" ]
+    ttl = 3600
+}
+
+resource "dns_a_record_set" "wild-docker-srv-02" {
+    zone = "home.soniiit.net."
+    name = "*.docker-srv-02"
+    addresses = [ "192.168.178.21" ]
     ttl = 3600
 }
 
