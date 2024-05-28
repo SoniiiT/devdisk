@@ -1,4 +1,4 @@
-resource "proxmox_vm_qemu" "app-srv-01" {
+resource "proxmox_vm_qemu" "app_srv_01" {
     
     # VM General Settings
     target_node = "pve-srv-01"
@@ -27,7 +27,7 @@ resource "proxmox_vm_qemu" "app-srv-01" {
     cpu = "kvm64"
     
     # VM Memory Settings
-    memory = 32768
+    memory = 16384
 
     # VM Network Settings
     network {
@@ -47,13 +47,7 @@ resource "proxmox_vm_qemu" "app-srv-01" {
         virtio {
             virtio0 {
                 disk {
-                    size               = 32
-                    storage            = "VM-Storage"
-                }
-            }
-            virtio1 {
-                disk {
-                    size               = 512
+                    size               = 544
                     storage            = "VM-Storage"
                 }
             }
@@ -67,7 +61,7 @@ resource "proxmox_vm_qemu" "app-srv-01" {
     ipconfig0 = "ip=192.168.178.30/24,gw=192.168.178.1,ip6=dhcp"
 
     # (Optional) DNS Servers
-    nameserver = "192.168.178.1,192.168.178.3"
+    nameserver = "192.168.178.3"
 
     # (Optional) Default User
     ciuser = "soniiit"
@@ -76,7 +70,7 @@ resource "proxmox_vm_qemu" "app-srv-01" {
     sshkeys = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwS2E+9u7DXG01ViDPKTObWcqb3MZ1+bkHrfOl2e0FokVv8QI6v0LtJgPc5i8eEunQlK29GsLmf9s1cKLN8LdgT7VXknSg2tsNtL1/nDFrSwRnuu5HJXmxjrdpPFyBSq5h/hOwwImhT5vSRdwfNF9Y4N0kwEghzu1/7JJDF8eAW66DBrBeMgz28U4IohCiRm+YvGhsvRfqeD9ztd+Wb0xcb485yotE8LnDAzGsfSwQ4GrOaoiLYdzZAVNiqXKrZhs7YpyvTu6ngnA+sGH+w0Igms++eF9ElQkfgz4LHVUdjVaySC41YWqE2nQacVqefEPcCIKnaAwRlvtBzBSXujCCI4//py/538SWLYrcmGjtNBKkBA0KVbPP+R7qq387Hr+bjjoXtIARsuqqj6gCzmYxrGiors84vt+dYMWNzTj9tvOVkNFpsIu3NER2e1yXgjVXSpPZDKERTCcDoNIwLI91+6EpMnXYz8MtH80CIHFJNSwflc5wud2ebSEGmSfGgJ0djAN4KWIhg/J+RgcZ/o/dvew6GxRYbv9EDZ3UXSaSEeKvjGLXAPV5MhQuIB1iavzV6CO3ntTKvqYHFyxSkWTXTyllGtsAj3N2DLA8CSnswsBXmO0FleEhjwAUzCA3itDK+/oBipPFbna3x0c+qcb8GJSsYpNIvTqdFb92DgUiPQ== "
 }
 
-resource "proxmox_vm_qemu" "app-srv-02" {
+resource "proxmox_vm_qemu" "app_srv_02" {
     
     # VM General Settings
     target_node = "pve-srv-01"
@@ -105,7 +99,7 @@ resource "proxmox_vm_qemu" "app-srv-02" {
     cpu = "kvm64"
     
     # VM Memory Settings
-    memory = 16384
+    memory = 8192
 
     # VM Network Settings
     network {
@@ -131,7 +125,7 @@ resource "proxmox_vm_qemu" "app-srv-02" {
             }
             virtio1 {
                 disk {
-                    size               = 512
+                    size               = 2048
                     storage            = "VM-Storage"
                 }
             }
@@ -145,7 +139,7 @@ resource "proxmox_vm_qemu" "app-srv-02" {
     ipconfig0 = "ip=192.168.178.4/24,gw=192.168.178.1,ip6=dhcp"
 
     # (Optional) DNS Servers
-    nameserver = "192.168.178.1,192.168.178.3"
+    nameserver = "192.168.178.3"
 
     # (Optional) Default User
     ciuser = "soniiit"
@@ -154,12 +148,12 @@ resource "proxmox_vm_qemu" "app-srv-02" {
     sshkeys = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwS2E+9u7DXG01ViDPKTObWcqb3MZ1+bkHrfOl2e0FokVv8QI6v0LtJgPc5i8eEunQlK29GsLmf9s1cKLN8LdgT7VXknSg2tsNtL1/nDFrSwRnuu5HJXmxjrdpPFyBSq5h/hOwwImhT5vSRdwfNF9Y4N0kwEghzu1/7JJDF8eAW66DBrBeMgz28U4IohCiRm+YvGhsvRfqeD9ztd+Wb0xcb485yotE8LnDAzGsfSwQ4GrOaoiLYdzZAVNiqXKrZhs7YpyvTu6ngnA+sGH+w0Igms++eF9ElQkfgz4LHVUdjVaySC41YWqE2nQacVqefEPcCIKnaAwRlvtBzBSXujCCI4//py/538SWLYrcmGjtNBKkBA0KVbPP+R7qq387Hr+bjjoXtIARsuqqj6gCzmYxrGiors84vt+dYMWNzTj9tvOVkNFpsIu3NER2e1yXgjVXSpPZDKERTCcDoNIwLI91+6EpMnXYz8MtH80CIHFJNSwflc5wud2ebSEGmSfGgJ0djAN4KWIhg/J+RgcZ/o/dvew6GxRYbv9EDZ3UXSaSEeKvjGLXAPV5MhQuIB1iavzV6CO3ntTKvqYHFyxSkWTXTyllGtsAj3N2DLA8CSnswsBXmO0FleEhjwAUzCA3itDK+/oBipPFbna3x0c+qcb8GJSsYpNIvTqdFb92DgUiPQ== "
 }
 
-resource "proxmox_vm_qemu" "app-srv-03" {
+resource "proxmox_vm_qemu" "app_srv_03" {
     
     # VM General Settings
     target_node = "pve-srv-01"
     vmid = "0"
-    name = "app-srv-04"
+    name = "app-srv-03"
     tags = "ubuntu,application"
     desc = "Github Runner Server"
 
@@ -217,7 +211,7 @@ resource "proxmox_vm_qemu" "app-srv-03" {
     ipconfig0 = "ip=192.168.178.31/24,gw=192.168.178.1,ip6=dhcp"
 
     # (Optional) DNS Servers
-    nameserver = "192.168.178.1,192.168.178.3"
+    nameserver = "192.168.178.3"
 
     # (Optional) Default User
     ciuser = "soniiit"
@@ -226,12 +220,12 @@ resource "proxmox_vm_qemu" "app-srv-03" {
     sshkeys = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwS2E+9u7DXG01ViDPKTObWcqb3MZ1+bkHrfOl2e0FokVv8QI6v0LtJgPc5i8eEunQlK29GsLmf9s1cKLN8LdgT7VXknSg2tsNtL1/nDFrSwRnuu5HJXmxjrdpPFyBSq5h/hOwwImhT5vSRdwfNF9Y4N0kwEghzu1/7JJDF8eAW66DBrBeMgz28U4IohCiRm+YvGhsvRfqeD9ztd+Wb0xcb485yotE8LnDAzGsfSwQ4GrOaoiLYdzZAVNiqXKrZhs7YpyvTu6ngnA+sGH+w0Igms++eF9ElQkfgz4LHVUdjVaySC41YWqE2nQacVqefEPcCIKnaAwRlvtBzBSXujCCI4//py/538SWLYrcmGjtNBKkBA0KVbPP+R7qq387Hr+bjjoXtIARsuqqj6gCzmYxrGiors84vt+dYMWNzTj9tvOVkNFpsIu3NER2e1yXgjVXSpPZDKERTCcDoNIwLI91+6EpMnXYz8MtH80CIHFJNSwflc5wud2ebSEGmSfGgJ0djAN4KWIhg/J+RgcZ/o/dvew6GxRYbv9EDZ3UXSaSEeKvjGLXAPV5MhQuIB1iavzV6CO3ntTKvqYHFyxSkWTXTyllGtsAj3N2DLA8CSnswsBXmO0FleEhjwAUzCA3itDK+/oBipPFbna3x0c+qcb8GJSsYpNIvTqdFb92DgUiPQ== "
 }
 
-resource "proxmox_vm_qemu" "app-srv-04" {
+resource "proxmox_vm_qemu" "app_srv_04" {
     
     # VM General Settings
     target_node = "pve-srv-01"
     vmid = "0"
-    name = "app-srv-05"
+    name = "app-srv-04"
     tags = "ubuntu,application"
     desc = "Terraform Agent Server"
 
@@ -289,7 +283,7 @@ resource "proxmox_vm_qemu" "app-srv-04" {
     ipconfig0 = "ip=192.168.178.32/24,gw=192.168.178.1,ip6=dhcp"
 
     # (Optional) DNS Servers
-    nameserver = "192.168.178.1,192.168.178.3"
+    nameserver = "192.168.178.3"
 
     # (Optional) Default User
     ciuser = "soniiit"

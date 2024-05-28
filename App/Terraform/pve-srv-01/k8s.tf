@@ -62,7 +62,7 @@
 #     ipconfig0 = "ip=192.168.178.42/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -135,7 +135,7 @@
 #     ipconfig0 = "ip=192.168.178.43/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -208,7 +208,7 @@
 #     ipconfig0 = "ip=192.168.178.40/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -281,7 +281,7 @@
 #     ipconfig0 = "ip=192.168.178.41/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -354,7 +354,7 @@
 #     ipconfig0 = "ip=192.168.178.44/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -427,7 +427,7 @@
 #     ipconfig0 = "ip=192.168.178.45/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -506,7 +506,7 @@
 #     ipconfig0 = "ip=192.168.178.46/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"
@@ -585,7 +585,7 @@
 #     ipconfig0 = "ip=192.168.178.47/24,gw=192.168.178.1,ip6=dhcp"
 
 #     # (Optional) DNS Servers
-#     nameserver = "192.168.178.1,192.168.178.3"
+#     nameserver = "192.168.178.3"
 
 #     # (Optional) Default User
 #     ciuser = "soniiit"

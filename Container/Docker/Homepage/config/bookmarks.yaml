@@ -1,16 +1,10 @@
-- Github-Repositories:
-  - Devdisk:
-    - icon: si-github-#FFFFFF
-      href: https://github.com/SoniiiT/devdisk
-  - Obsidian-Vault:
-    - icon: si-github-#FFFFFF
-      href: https://github.com/SoniiiT/soniiits-obsidian-vault
-  - Instock-Project:
-    - icon: si-github-#FFFFFF
-      href: https://github.com/Instock-IT/instockproject
-  - Devdisk-School:
-    - icon: si-github-#FFFFFF
-      href: https://github.com/SoniiiT/devdiskschool
+- IOT-Devices:
+  - Epson Drucker (WZ):
+    - icon: https://cdn-icons-png.flaticon.com/512/882/882706.png
+      href: http://drucker-wz.home.soniiit.net/PRESENTATION/HTML/TOP/INDEX.HTML
+  - Brother Drucker (Iris):
+    - icon: https://logos-world.net/wp-content/uploads/2023/01/Brother-Logo.png
+      href: https://drucker-iris.home.soniiit.net/home/status.html
 
 - Cloud Services:
   - Cloudflare:
@@ -19,17 +13,20 @@
   - Netbird:
     - icon: https://netbird.io/_next/static/media/netbird-icon.00225e97.svg
       href: https://app.netbird.io
+  - Trade Republic:
+    - icon: https://companieslogo.com/img/orig/traderepublic.D-de64dfeb.png?t=1700800010
+      href: https://app.traderepublic.com/
+  - Cloud HashiCorp:
+    - icon: https://portal.cloud.hashicorp.com/favicon.svg
+      href: https://portal.cloud.hashicorp.com/
 
 - Local Services:
   - PowerDNS:
     - icon: https://repository-images.githubusercontent.com/9693534/0d32f700-b8b4-11eb-9d53-0e8d883208a2
-      href: http://192.168.178.3
-  - Dockge-01:
-    - icon: si-docker-#2496ED
-      href: http://dockge-01.home.soniiit.net
-  - Dockge-02:
-    - icon: si-docker-#2496ED
-      href: http://dockge-02.home.soniiit.net
+      href: http://dns.home.soniiit.net
+  - Dockge:
+    - icon: https://dockge.kuma.pet/icon.svg
+      href: https://dockge.home.soniiit.net
   - Kestra:
     - icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
-      href: http://kestra.home.soniiit.net
+      href: https://kestra.home.soniiit.net
