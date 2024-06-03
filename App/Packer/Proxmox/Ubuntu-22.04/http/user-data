@@ -1,9 +1,9 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: de_DE
+  locale: en_EN
   keyboard:
-    layout: de
+    layout: en
   ssh:
     install-server: true
     allow-pw: true
@@ -22,7 +22,7 @@ autoinstall:
     package_upgrade: false
     timezone: Europe/Berlin
     users:
-    - name: soniiit
+    - name: user
       groups: [adm, sudo]
       lock-passwd: false
       sudo: ALL=(ALL) NOPASSWD:ALL

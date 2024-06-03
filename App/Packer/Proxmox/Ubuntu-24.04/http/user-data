@@ -1,9 +1,9 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: de_DE
+  locale: en_EN
   keyboard:
-    layout: de
+    layout: en
   ssh:
     install-server: true
     allow-pw: true

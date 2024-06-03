@@ -5,13 +5,6 @@ terraform {
             version = "3.4.1"
         }
     }
-    cloud {
-        organization = "soniiit-net"
-
-        workspaces {
-            name = "dns"
-        }
-    }
 }
 
 variable "tsig_key" {
@@ -21,7 +14,7 @@ variable "tsig_key" {
 
 provider "dns" {
     update {
-        server        = "192.168.178.3"
+        server        = "0.0.0.0" # IP address of the DNS server
         key_name      = "tsig-key."
         key_algorithm = "hmac-sha256"
         key_secret    = var.tsig_key

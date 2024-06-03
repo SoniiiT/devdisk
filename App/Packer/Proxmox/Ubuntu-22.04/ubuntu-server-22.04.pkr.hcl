@@ -1,7 +1,3 @@
-# Ubuntu Server jammy
-# ---
-# Packer Template to create an Ubuntu Server (jammy) on Proxmox
-
 # Variable Definitions
 variable "proxmox_api_url" {
     type = string
@@ -27,7 +23,7 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     insecure_skip_tls_verify = true
     
     # VM General Settings
-    node = "pve-srv-01"
+    node = "pve"
     # vm_id = "100"
     vm_name = "ubuntu-server-22-04"
     template_description = "Ubuntu Server jammy Image"
@@ -88,13 +84,13 @@ source "proxmox-iso" "ubuntu-server-22-04" {
     boot_wait = "5s"
 
     # PACKER Autoinstall Settings
-    http_directory = "C:/Users/ToniR/git/devdisk/App/Packer/Ubuntu-22.04/http" 
+    http_directory = "C:/Packer/Ubuntu-22.04/http" # Full Path to the HTTP Directory
     # (Optional) Bind IP Address and Port
-    http_bind_address = "192.168.178.90"
+    # http_bind_address = "IP-Address of Host Machine thats executing Packer"
     http_port_min = 8802
     http_port_max = 8802
 
-    ssh_username = "soniiit"
+    ssh_username = "user"
 
     # (Option 1) Add your Password here
     # ssh_password = "your-password"
@@ -130,7 +126,7 @@ build {
 
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
     provisioner "file" {
-        source = "C:/Users/ToniR/git/devdisk/App/Packer/Ubuntu-22.04/files/99-pve.cfg"
+        source = "C:/Packer/Ubuntu-22.04/files/99-pve.cfg" # Full Path to the file
         destination = "/tmp/99-pve.cfg"
     }
 
