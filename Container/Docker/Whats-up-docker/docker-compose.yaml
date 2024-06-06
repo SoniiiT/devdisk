@@ -12,7 +12,7 @@ services:
       - WUD_WATCHER_LOCAL_SOCKET=/var/run/docker.sock
       - WUD_WATCHER_DOCKER-SRV-MGM_HOST=192.168.178.11
       - WUD_WATCHER_DOCKER-SRV-01_HOST=192.168.178.21
-      - WUD_TRIGGER_DISCORD_1_URL=https://discord.com/api/webhooks/123/123
+      - WUD_TRIGGER_DISCORD_1_URL=https://discord.com/api/webhooks/xyz/xyz
       - WUD_TRIGGER_DISCORD_1_BOTUSERNAME=Whats up Docker
       - WUD_TRIGGER_DOCKER_UPDATE_DRYRUN=true
 networks: {}

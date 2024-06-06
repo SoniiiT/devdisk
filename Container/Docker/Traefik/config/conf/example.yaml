@@ -1,19 +1,19 @@
 http:
   routers:
-    kestra-route:
-      rule: "Host(`kestra.home.soniiit.net`)"
-      service: kestra-service
+    portainer-route:
+      rule: "Host(`portainer.example.com`)"
+      service: portainer-service
       entryPoints:
       - websecure
       tls:
         certResolver: cloudflare
 
   services:
-    kestra-service:
+    portainer-service:
       loadBalancer:
         serversTransport: insecureTransport
         servers:
-        - url: "http://192.168.178.20:1337"
+        - url: "https://0.0.0.0:9443"
 
   serversTransports:
     insecureTransport:

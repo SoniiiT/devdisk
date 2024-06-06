@@ -12,7 +12,7 @@ services:
       - "3000:3000"
     user: $PUID
     volumes:
-      - $DOCKERDIR/appdata/grafana:/var/lib/grafana
+      - ./grafana:/var/lib/grafana
     environment:
       GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel,grafana-piechart-panel"
 
@@ -27,5 +27,5 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - $DOCKERDIR/appdata/influxdb2/config:/etc/influxdb2
-      - $DOCKERDIR/appdata/influxdb2/db:/var/lib/influxdb2
+      - ./influxdb2/config:/etc/influxdb2
+      - ./influxdb2/db:/var/lib/influxdb2

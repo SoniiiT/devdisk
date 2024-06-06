@@ -7,7 +7,7 @@ networks:
 services:
   dockge:
     image: louislam/dockge:latest
-    container_name: dockge-01
+    container_name: dockge
     restart: unless-stopped
     ports:
       - 5001:5001
@@ -18,9 +18,9 @@ services:
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
       # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
-      - /home/soniiit/docker-compose/:/home/soniiit/docker-compose/
+      - ./docker-compose/:/home/user/docker-compose/
     environment:
       # Tell Dockge where to find the stacks
-      - DOCKGE_STACKS_DIR=/home/soniiit/docker-compose/
+      - DOCKGE_STACKS_DIR=/home/user/docker-compose/
     networks:
       - traefik-nw

@@ -13,7 +13,7 @@ services:
       - "CUSTOM_USER=user"
       - "PASSWORD=password"
     volumes:
-      - "/docker/filezillaftp:/config"
+      - ./filezillaftp:/config
     ports:
       - "3050:3000"
       - "3051:3001"
